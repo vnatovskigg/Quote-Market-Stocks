@@ -33,8 +33,7 @@ body {
   justify-content: space-between;
   align-items: center;
   min-height: 10vh;
-  background: rgb(11, 23, 65);
-  color: white;
+  background: #0b1741;
   border-radius: 0px 0px 15px 15px;
   box-shadow: 0.5px 2px 3px rgba(255, 255, 255, 0.7);
 }
@@ -56,7 +55,7 @@ body {
 a.nav-links {
   text-decoration: none;
   letter-spacing: 2px;
-  color: white;
+  color: #e2dcdc;
   padding: 8px;
   font-size: 8pt;
   height: 5vh;
@@ -71,7 +70,7 @@ a.nav-links {
 
 a.nav-links:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px white;
+  box-shadow: 0 0 3px #e2dcdc;
 }
 
 /* .nav ul li:hover {
@@ -138,13 +137,12 @@ a.nav-links:hover {
   justify-content: center;
   align-items: center;
   margin: 5px;
-  /* margin-left: auto; */
   width: 25px;
   cursor: pointer;
   border: none;
   border-radius: 50%;
   background: rgb(11, 23, 65);
-  color: white;
+  color: #e2dcdc;
 }
 
 .search-btn:focus {
@@ -223,4 +221,26 @@ a.nav-links:hover {
   flex-direction: column;
   align-items: center;
   padding: 15px;
+}
+
+#heading h1 {
+  color: #e2dcdc;
+}
+
+#heading h3 {
+  margin-bottom: 15px;
+  font-style: italic;
+  color: white;
+}
+
+#profile-pic img {
+  border-radius: 100vh;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 }

@@ -35,7 +35,7 @@ function Contact() {
       <div id="heading">
         <h1>Contact</h1>
       </div>
-      <div id="content-contact">
+      <div id="content">
         <div id="social-links">
           <ul id="social-list">
             <li className="social-profile">
