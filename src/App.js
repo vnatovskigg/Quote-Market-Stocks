@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./styles/App.css";
-import Nav from "./Nav";
+import Nav from "./components/navigation";
 import About from "./About";
 import Contact from "./Contact";
 import Screen from "./Stock-screen";

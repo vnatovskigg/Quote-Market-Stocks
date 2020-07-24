@@ -1,0 +1,6 @@
+.logo {
+  cursor: pointer;
+  width: 15%;
+  justify-content: space-around;
+  display: flex;
+}
