@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./styles/App.css";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { AiOutlineCaretUp } from "react-icons/ai";
 import { AiOutlineCaretRight } from "react-icons/ai";
+import styles from "./index.module.css";
 
 function Quote(props) {
   const [state, setState] = useState({
@@ -10,26 +10,18 @@ function Quote(props) {
     changeIsPositive: true,
   });
 
-  let name = "";
   const API_KEY = "JMDFANIQC0K37BFZ";
   const yahooFinanceURL = `https://finance.yahoo.com/quote/`;
+  const stockData = {
+    SPOT: "Spotify Technology",
+    AAPL: "Apple Inc.",
+    ATVI: "Activision Blizzard",
+    DIS: "Walt Disney Co",
+    KO: "Coca-Cola Co",
+  };
 
-  switch (props.ticker) {
-    case "SPOT":
-      name = `Spotify Technology (${props.ticker})`;
-      break;
-    case "AAPL":
-      name = `Apple Inc. (${props.ticker})`;
-      break;
-    case "ATVI":
-      name = `Activision Blizzard (${props.ticker})`;
-      break;
-    case "DIS":
-      name = `Walt Disney Co (${props.ticker})`;
-      break;
-    case "KO":
-      name = `Coca-Cola Co (${props.ticker})`;
-  }
+  const nameMatch = Object.keys(stockData).find((key) => key === props.ticker);
+  const name = stockData[nameMatch] + ` (${nameMatch})`;
 
   useEffect(() => {
     fetch(
@@ -63,22 +55,22 @@ function Quote(props) {
       : `${state.quote.diff} (${state.quote.change}%) `;
 
   return (
-    <div className="quote">
-      <h3 className="stock-name">
+    <div className={styles.quote}>
+      <h3 className={styles["stock-name"]}>
         <a href={`${yahooFinanceURL}${props.ticker}`} target="_blank">
           {state.quote.name}
         </a>
       </h3>
 
-      <h4 className="stock-price">${state.quote.price}</h4>
+      <h4 className={styles["stock-price"]}>${state.quote.price}</h4>
 
       <p
         className={
           state.changeIsPositive
-            ? "stock-price-change-pos"
+            ? styles["stock-price-change-pos"]
             : state.quote.diff !== 0
-            ? "stock-price-change-negative"
-            : "stock-price-change-none"
+            ? styles["stock-price-change-negative"]
+            : styles["stock-price-change-none"]
         }
       >
         {displayPrice}

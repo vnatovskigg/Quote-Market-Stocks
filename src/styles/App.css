@@ -29,55 +29,6 @@ body {
 
 /* STOCK SCREEN STYLES */
 
-#stocks-screen {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 5px;
-}
-
-.quote {
-  display: flex;
-  flex-flow: column wrap;
-  font-size: 13pt;
-  padding: 10px;
-  margin: 5px;
-  width: 20vw;
-  min-height: 20vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.7);
-}
-
-.quote h3 {
-  font-size: 12pt;
-  margin-bottom: auto;
-}
-
-.stock-price {
-  font-size: 14pt;
-  color: #111111;
-}
-
-.quote h3 a {
-  color: #0362b1;
-  text-decoration: none;
-}
-
-.stock-price-change-pos {
-  color: #4d9230;
-  font-weight: bold;
-}
-
-.stock-price-change-negative {
-  color: #b81b1b;
-  font-weight: bold;
-}
-
-.stock-price-change-none {
-  color: #ffe200;
-  font-weight: bold;
-}
-
 /* MAIN CONTENT STYLES */
 
 .wrapper {
