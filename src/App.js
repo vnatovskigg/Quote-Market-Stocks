@@ -4,7 +4,7 @@ import "./styles/App.css";
 import Nav from "./components/navigation";
 import About from "./About";
 import Contact from "./Contact";
-import Screen from "./Stock-screen";
+import Screen from "./components/stock-screen";
 
 function App() {
   return (
