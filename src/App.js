@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./styles/App.css";
 import Nav from "./components/navigation";
-import About from "./About";
-import Contact from "./Contact";
+import About from "./components/about";
+import Contact from "./components/contact";
 import Screen from "./components/stock-screen";
 
 function App() {

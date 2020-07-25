@@ -1,0 +1,61 @@
+.wrapper {
+  margin-top: 25px;
+  min-height: 50vh;
+  padding: 10px;
+  border-radius: 25px 25px 0 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.heading h1 {
+  color: #e2dcdc;
+  margin-bottom: 15px;
+}
+
+.heading h3 {
+  margin-bottom: 15px;
+  font-family: "Roboto", serif;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.profile-pic img {
+  border-radius: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+/* About page styles */
+.QnA {
+  width: 40vh;
+  text-align: center;
+  font-size: 11pt;
+  padding: 5px;
+  margin: 5px;
+  line-height: 25px;
+  color: #e2dcdc;
+}
+
+.QnA h6 {
+  font-size: 12pt;
+  font-style: italic;
+  color: white;
+}
+
+.QnA span p {
+  margin-bottom: 5px;
+}
