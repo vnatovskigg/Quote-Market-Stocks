@@ -1,6 +1,6 @@
 import React from "react";
-import "./styles/App.css";
-import profilePic from "./assets/profile-pic.png";
+import styles from "./index.module.css";
+import profilePic from "../../assets/profile-pic.png";
 
 function About() {
   let style = {
@@ -9,23 +9,23 @@ function About() {
   };
 
   return (
-    <div className="wrapper">
-      <div id="heading">
+    <div className={styles.wrapper}>
+      <div className={styles.heading}>
         <h1>About</h1>
         <h3>Velizar Natovski</h3>
-        <div id="profile-pic">
+        <div className={styles["profile-pic"]}>
           <img src={profilePic} />
         </div>
       </div>
-      <div id="content">
-        <article className="QnA">
+      <div className={styles.content}>
+        <article className={styles["QnA"]}>
           <h6>What I do?</h6>
           <span>
             I work in sales since 2015. It's one of my passions and a career
             path so far. I am quite good at it too.
           </span>
         </article>
-        <article className="QnA">
+        <article className={styles["QnA"]}>
           <h6>What else am I up to?</h6>
           <span>
             Well, it's exploring and developing solid JS & React skills. I
@@ -33,7 +33,7 @@ function About() {
             interests, namely capital investing and financial markets.
           </span>
         </article>
-        <article className="QnA">
+        <article className={styles["QnA"]}>
           <h6>Some facts about me I find interesting!</h6>
           <span>
             <p>
@@ -52,7 +52,7 @@ function About() {
             </p>
           </span>
         </article>
-        <article className="QnA">
+        <article className={styles["QnA"]}>
           <h6>What's with this project?</h6>
           <span>
             <p>
@@ -82,7 +82,7 @@ function About() {
             </p>
           </span>
         </article>
-        <article className="QnA">
+        <article className={styles["QnA"]}>
           <h6>What is next?</h6>
           <span>Lorem ipsum mofo</span>
         </article>

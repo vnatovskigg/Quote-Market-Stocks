@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import "./styles/App.css";
-import sendMessage from "../src/controllers/db.js";
+import styles from "./index.module.css";
 
 import {
   AiFillFacebook,
@@ -12,17 +11,20 @@ import {
 
 function Contact() {
   const { register, handleSubmit, errors, reset } = useForm();
-  const onSubmit = (data, e) => {
-    sendMessage(data);
-    e.target.reset();
+  const onSubmit = (data) => {
+    console.log(data);
   };
+
   return (
-    <div className="wrapper">
-      <div id="heading">
+    <div className={styles.wrapper}>
+      <div className={styles.heading}>
         <h1>Contact</h1>
       </div>
-      <div id="content">
-        <form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
+      <div className={styles.content}>
+        <form
+          className={styles["contact-form"]}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
             type="text"
             placeholder="Name"
@@ -30,7 +32,7 @@ function Contact() {
             ref={register({ required: true, maxLength: 80 })}
           />
 
-          {errors.name && <span>Please enter a name</span>}
+          {errors.name && <span>Minimum of 3 characters</span>}
 
           <input
             type="text"
@@ -39,17 +41,21 @@ function Contact() {
             ref={register({ required: true, pattern: /^\S+@\S+$/i })}
           />
 
-          {errors.email && <span>Please enter a valid email address</span>}
+          {errors.email && <span>Invalid email address</span>}
 
           <textarea placeholder="Message..." name="message" ref={register} />
 
-          <div id="submit-div">
-            <input id="form-submit" type="submit" value="Send Message" />
+          <div className={styles["submit-div"]}>
+            <input
+              className={styles["form-submit"]}
+              type="submit"
+              value="Send Message"
+            />
           </div>
         </form>
-        <div id="social-links">
-          <ul id="social-list">
-            <li className="social-profile">
+        <div className={styles["social-links"]}>
+          <ul className={styles["social-list"]}>
+            <li className={styles["social-profile"]}>
               <a
                 href="https://www.facebook.com/velizar.natovski"
                 target="_blank"
@@ -58,7 +64,7 @@ function Contact() {
                 <AiFillFacebook />
               </a>
             </li>
-            <li className="social-profile">
+            <li className={styles["social-profile"]}>
               <a
                 href="https://www.linkedin.com/in/velizar-natovski/"
                 target="_blank"
@@ -67,7 +73,7 @@ function Contact() {
                 <AiFillLinkedin />
               </a>
             </li>
-            <li className="social-profile">
+            <li className={styles["social-profile"]}>
               <a
                 href=" https://github.com/vnatovskigg"
                 target="_blank"
@@ -76,7 +82,7 @@ function Contact() {
                 <AiFillGithub />
               </a>
             </li>
-            <li className="social-profile">
+            <li className={styles["social-profile"]}>
               <a
                 href="mailto: v.natovskigg@abv.bg"
                 target="_blank"
