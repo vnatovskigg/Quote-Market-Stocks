@@ -11,7 +11,7 @@ const Search = () => {
       <input
         type="text"
         className={!openSearch ? styles.closeSearch : styles.openSearch}
-        placeholder="Search..."
+        placeholder="Search for stock"
         aria-label="search"
       />
       <button
