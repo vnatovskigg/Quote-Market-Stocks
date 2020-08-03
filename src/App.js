@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <div className="main">
           <Nav />
-          <Screen />
+          {/* <Screen /> */}
           <Switch>
             {/* <Route path="/" exact component={Home} /> */}
             <Route path="/about" component={About} />
