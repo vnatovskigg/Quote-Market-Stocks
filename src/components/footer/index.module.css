@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  background-color: #000;
+}
+
+.text {
+  text-align: center;
+  border-top: 1px solid white;
+  padding: 5px;
+  box-shadow: 0.5px 2px 3px rgba(255, 255, 255, 0.7);
+}
+
+.text a {
+  color: #ececec;
+  text-decoration: none;
+  font-size: small;
+}

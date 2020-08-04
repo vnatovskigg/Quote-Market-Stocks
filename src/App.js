@@ -5,6 +5,7 @@ import Nav from "./components/navigation";
 import About from "./components/about";
 import Contact from "./components/contact";
 import Screen from "./components/stock-screen";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/contact" component={Contact} />
           </Switch>
         </div>
+        <Footer />
       </div>
     </Router>
   );
