@@ -64,7 +64,11 @@ const Search = () => {
         />
         <button
           className={styles["search-btn"]}
-          onClick={() => setOpenSearch(!openSearch)}
+          onClick={() => {
+            setOpenSearch(!openSearch);
+            setSuggestions([]);
+            setText("");
+          }}
         >
           {openSearch ? <FaTimes /> : <FaSearch />}
         </button>
