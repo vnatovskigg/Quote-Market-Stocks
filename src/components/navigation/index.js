@@ -11,8 +11,8 @@ const Nav = () => {
       <Logo />
       <ul className={styles["nav-ul"]}>
         <li className={styles["nav-li"]}>
-          {/* <Search /> */}
-          <AutoCompleteSearch />
+          <Search />
+          {/* <AutoCompleteSearch /> */}
         </li>
         <Link to="/about" className={styles["nav-links"]}>
           ABOUT
