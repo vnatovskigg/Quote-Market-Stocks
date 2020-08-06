@@ -6,6 +6,7 @@ import About from "./components/about";
 import Contact from "./components/contact";
 import Screen from "./components/stock-screen";
 import Footer from "./components/footer";
+import StockTV from "./components/screener-widget";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <div className="App">
         <div className="main">
           <Nav />
+          <StockTV />
           {/* <Screen /> */}
           <Switch>
             {/* <Route path="/" exact component={Home} /> */}
