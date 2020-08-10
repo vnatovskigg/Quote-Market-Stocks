@@ -1,6 +1,9 @@
 .logo {
-  cursor: pointer;
-  width: 15%;
-  justify-content: space-around;
-  display: flex;
+  /* background-color: white; */
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 3;
+  left: 3;
+  z-index: 9;
 }
