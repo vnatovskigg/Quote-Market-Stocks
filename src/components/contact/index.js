@@ -10,9 +10,28 @@ import {
 } from "react-icons/ai";
 
 function Contact() {
+  const [message, setMessage] = useState(null);
   const { register, handleSubmit, errors, reset } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const onSubmit = async (data) => {
+    const { name, email, message } = data;
+    const promise = await fetch("http://localhost:8888/api/questions", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const res = await promise.json();
+    if (res) {
+      setMessage("Message received. Thank you!");
+      reset();
+    }
   };
 
   return (
@@ -43,7 +62,11 @@ function Contact() {
 
           {errors.email && <span>Invalid email address</span>}
 
-          <textarea placeholder="Message..." name="message" ref={register} />
+          <textarea
+            placeholder={message || "Message..."}
+            name="message"
+            ref={register}
+          />
 
           <div className={styles["submit-div"]}>
             <input
@@ -84,7 +107,7 @@ function Contact() {
             </li>
             <li className={styles["social-profile"]}>
               <a
-                href="mailto: v.natovskigg@abv.bg"
+                href="mailto: vnatovskigg@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
