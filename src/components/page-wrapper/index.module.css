@@ -24,3 +24,7 @@ body {
   );
   padding: 25px;
 }
+
+.content {
+  width: 100%;
+}

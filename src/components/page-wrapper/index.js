@@ -11,7 +11,7 @@ function PageWrapper(props) {
       <div className={styles.main}>
         <Nav />
         <StockTV />
-        <Screen />
+        {/* <Screen /> */}
         <div className={styles.content}>{props.children}</div>
       </div>
       <Footer />

@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./index.module.css";
-
-import {
-  AiFillFacebook,
-  AiOutlineMail,
-  AiFillLinkedin,
-  AiFillGithub,
-} from "react-icons/ai";
+import Socials from "../social-links";
 
 function Contact() {
-  const [message, setMessage] = useState(null);
-  const { register, handleSubmit, errors, reset } = useForm();
+  const [success, setSuccess] = useState(false);
+  const { register, handleSubmit, errors, reset } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
 
   const onSubmit = async (data) => {
     const { name, email, message } = data;
@@ -29,8 +26,8 @@ function Contact() {
 
     const res = await promise.json();
     if (res) {
-      setMessage("Message received. Thank you!");
       reset();
+      setSuccess(!success);
     }
   };
 
@@ -62,59 +59,18 @@ function Contact() {
 
           {errors.email && <span>Invalid email address</span>}
 
-          <textarea
-            placeholder={message || "Message..."}
-            name="message"
-            ref={register}
-          />
+          <textarea placeholder={"Message..."} name="message" ref={register} />
 
           <div className={styles["submit-div"]}>
             <input
               className={styles["form-submit"]}
               type="submit"
-              value="Send Message"
+              value={success ? "Message sent !" : "Send Message"}
             />
           </div>
         </form>
         <div className={styles["social-links"]}>
-          <ul className={styles["social-list"]}>
-            <li className={styles["social-profile"]}>
-              <a
-                href="https://www.facebook.com/velizar.natovski"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillFacebook />
-              </a>
-            </li>
-            <li className={styles["social-profile"]}>
-              <a
-                href="https://www.linkedin.com/in/velizar-natovski/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillLinkedin />
-              </a>
-            </li>
-            <li className={styles["social-profile"]}>
-              <a
-                href=" https://github.com/vnatovskigg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
-            <li className={styles["social-profile"]}>
-              <a
-                href="mailto: vnatovskigg@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiOutlineMail />
-              </a>
-            </li>
-          </ul>
+          <Socials />
         </div>
       </div>
     </div>

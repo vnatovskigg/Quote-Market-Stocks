@@ -29,7 +29,7 @@ const App = (props) => {
       return;
     }
 
-    fetch("http://localhost:9999/api/user/verify", {
+    fetch("http://localhost:8888/api/user/verify", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -52,9 +52,9 @@ const App = (props) => {
       });
   }, []);
 
-  if (loading) {
-    return <div>Loading....</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading....</div>;
+  // }
 
   return (
     <UserContext.Provider

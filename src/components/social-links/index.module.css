@@ -1,0 +1,16 @@
+.social-list {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.social-list li a {
+  color: white;
+  font-size: 20pt;
+}
+
+.social-list li a:hover {
+  color: #4267b2;
+}
