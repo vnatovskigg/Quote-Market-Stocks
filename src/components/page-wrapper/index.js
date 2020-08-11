@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import React from "react";
 import Nav from "../navigation";
 import Screen from "../stock-screen";
@@ -22,4 +20,3 @@ function PageWrapper(props) {
 }
 
 export default PageWrapper;
->>>>>>> Stashed changes
