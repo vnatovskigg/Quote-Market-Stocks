@@ -53,7 +53,7 @@ a.nav-links:hover {
   } */
 
 .nav-li:nth-child(1) {
-  width: 80%;
+  width: 70%;
   box-shadow: none;
   cursor: initial;
 }

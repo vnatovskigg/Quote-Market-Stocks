@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../logo";
 import Search from "../search";
 import styles from "./index.module.css";
+import getNavigation from "../../services/navigation";
+import UserContext from "../../Context";
 
 const Nav = () => {
+  const context = useContext(UserContext);
+  const links = getNavigation(context.user);
   return (
     <nav className={styles.nav}>
       <Logo />
@@ -12,19 +16,14 @@ const Nav = () => {
         <li className={styles["nav-li"]}>
           <Search />
         </li>
-        <Link to="/about" className={styles["nav-links"]}>
-          ABOUT
-        </Link>
-
-        <Link to="/contact" className={styles["nav-links"]}>
-          CONTACT
-        </Link>
-        <Link to="/login" className={styles["nav-links"]}>
-          LOGIN
-        </Link>
-        <Link to="/register" className={styles["nav-links"]}>
-          REGISTER
-        </Link>
+        {links.map((nav) => {
+          return (
+            <Link
+              to={`${nav.link}`}
+              className={styles["nav-links"]}
+            >{`${nav.title}`}</Link>
+          );
+        })}
       </ul>
     </nav>
   );

@@ -6,7 +6,6 @@ import ContentWrapper from "../../components/content-wrapper";
 import authenticate from "../../services/authenticate";
 import UserContext from "../../Context";
 import { useHistory } from "react-router-dom";
-import getCookie from "../../services/cookie";
 
 const Login = () => {
   const { register, handleSubmit, errors, setError } = useForm();
