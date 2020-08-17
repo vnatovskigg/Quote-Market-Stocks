@@ -19,6 +19,12 @@ const Nav = () => {
         <Link to="/contact" className={styles["nav-links"]}>
           CONTACT
         </Link>
+        <Link to="/login" className={styles["nav-links"]}>
+          LOGIN
+        </Link>
+        <Link to="/register" className={styles["nav-links"]}>
+          REGISTER
+        </Link>
       </ul>
     </nav>
   );
