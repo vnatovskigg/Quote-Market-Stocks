@@ -2,34 +2,31 @@ import React from "react";
 import styles from "./index.module.css";
 import profilePic from "../../assets/profile-pic.png";
 import Accordion from "../accordion";
+import ContentWrapper from "../content-wrapper";
 
 function About() {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.heading}>
-        <h1>About</h1>
-        <h3>Velizar Natovski</h3>
-        <div className={styles["profile-pic"]}>
-          <img src={profilePic} />
-        </div>
+    <ContentWrapper title="About">
+      <h3 className={styles.name}>Velizar Natovski</h3>
+      <div className={styles["profile-pic"]}>
+        <img src={profilePic} />
       </div>
-      <div className={styles.content}>
-        <Accordion
-          title="What I do?"
-          content="I work in sales since 2015. It's one of my passions and a career
+      <Accordion
+        title="What I do?"
+        content="I work in sales since 2015. It's one of my passions and a career
         path so far. I am quite good at it too."
-        />
+      />
 
-        <Accordion
-          title="What else am I up to?"
-          content="Well, it's exploring and developing solid JS & React skills. I
+      <Accordion
+        title="What else am I up to?"
+        content="Well, it's exploring and developing solid JS & React skills. I
           wanted to be able to create applications to aid me in my other
           interests, namely capital investing and financial markets."
-        />
+      />
 
-        <Accordion
-          title="Some facts about me I find interesting!"
-          content="
+      <Accordion
+        title="Some facts about me I find interesting!"
+        content="
           <p>
             * I am an avid book reader. I enjoy autobiography books. The
             latest one is this of Benjamin Franklin.
@@ -46,10 +43,10 @@ function About() {
             Marco Carola in Ibiza or Dubfire in Amsterdam is just... sick.
             Paco Osuna and Hot Since 82 also make the top.
         </p>"
-        />
-        <Accordion
-          title="What's with this project?"
-          content="
+      />
+      <Accordion
+        title="What's with this project?"
+        content="
             <p>
               The original reason I wanted to create it was to have a personal
               stock portfolio tracker for myself.
@@ -75,14 +72,13 @@ function About() {
               graphs showing historic price movements, P/L tracker and hopefully
               much more.
             </p>"
-        />
-        <Accordion
-          title="What is next?"
-          content="I want to make the design responsive is the first thing.
+      />
+      <Accordion
+        title="What is next?"
+        content="I want to make the design responsive is the first thing.
            Time will show afterwards."
-        />
-      </div>
-    </div>
+      />
+    </ContentWrapper>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./index.module.css";
 import Socials from "../social-links";
+import ContentWrapper from "../content-wrapper";
 
 function Contact() {
   const [success, setSuccess] = useState(false);
@@ -32,48 +33,43 @@ function Contact() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.heading}>
-        <h1>Contact</h1>
-      </div>
-      <div className={styles.content}>
-        <form
-          className={styles["contact-form"]}
-          onSubmit={handleSubmit(onSubmit)}
-        >
+    <ContentWrapper title="Contact">
+      <form
+        className={styles["contact-form"]}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <input
+          type="text"
+          placeholder="Name"
+          name="name"
+          ref={register({ required: true, maxLength: 80 })}
+        />
+
+        {errors.name && <span>Minimum of 3 characters</span>}
+
+        <input
+          type="text"
+          placeholder="Email"
+          name="email"
+          ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+        />
+
+        {errors.email && <span>Invalid email address</span>}
+
+        <textarea placeholder={"Message..."} name="message" ref={register} />
+
+        <div className={styles["submit-div"]}>
           <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            ref={register({ required: true, maxLength: 80 })}
+            className={styles["form-submit"]}
+            type="submit"
+            value={success ? "Message sent !" : "Send Message"}
           />
-
-          {errors.name && <span>Minimum of 3 characters</span>}
-
-          <input
-            type="text"
-            placeholder="Email"
-            name="email"
-            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
-          />
-
-          {errors.email && <span>Invalid email address</span>}
-
-          <textarea placeholder={"Message..."} name="message" ref={register} />
-
-          <div className={styles["submit-div"]}>
-            <input
-              className={styles["form-submit"]}
-              type="submit"
-              value={success ? "Message sent !" : "Send Message"}
-            />
-          </div>
-        </form>
-        <div className={styles["social-links"]}>
-          <Socials />
         </div>
+      </form>
+      <div className={styles["social-links"]}>
+        <Socials />
       </div>
-    </div>
+    </ContentWrapper>
   );
 }
 
