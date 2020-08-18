@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  width: 90%;
+  height: auto;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  margin-bottom: 3%;
+  border: 1px solid #234465;
+  border-radius: 4px;
+}
+
+.contents {
+  position: relative;
+  margin-left: 10px;
+  padding: 10px;
+  width: 85%;
+  height: 150px;
+}
+
+.read {
+  color: #93ccea;
+}
+
+.title {
+  color: #0e43ad;
+  text-decoration: none;
+  font-size: 18pt;
+}
+
+.text {
+  width: 80%;
+}
+
+.image {
+  width: 15%;
+  height: 150px;
+  background-color: aliceblue;
+  margin-right: auto;
+}
+
+.image img {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.user {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-align: right;
+}

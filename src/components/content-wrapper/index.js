@@ -6,6 +6,7 @@ const ContentWrapper = (props) => {
     <div className={styles.wrapper}>
       <div className={styles.heading}>
         <h1 className={styles.title}>{props.title}</h1>
+        <span className={styles.today}>{props.date}</span>
       </div>
       <div className={styles.content}>{props.children}</div>
     </div>
