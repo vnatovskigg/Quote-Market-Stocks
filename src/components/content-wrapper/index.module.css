@@ -15,7 +15,11 @@
 
 .title {
   color: #e2dcdc;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+}
+
+.today {
+  font-size: 10pt;
 }
 
 .content {
