@@ -16,12 +16,11 @@ const Nav = () => {
         <li className={styles["nav-li"]}>
           <Search />
         </li>
-        {links.map((nav) => {
+        {links.map((nav, i) => {
           return (
-            <Link
-              to={`${nav.link}`}
-              className={styles["nav-links"]}
-            >{`${nav.title}`}</Link>
+            <Link to={`${nav.link}`} className={styles["nav-links"]} key={i}>
+              {`${nav.title}`}
+            </Link>
           );
         })}
       </ul>

@@ -1,0 +1,40 @@
+.container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: left;
+  padding: 25px;
+}
+
+.container h3 {
+  margin-bottom: 25px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 11pt;
+}
+
+.button {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #e2dcdc;
+  background-image: linear-gradient(
+    to top right,
+    rgba(30, 60, 114, 0.9),
+    rgba(42, 82, 152, 0.9)
+  );
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-image: linear-gradient(
+    to top right,
+    rgba(30, 60, 114, 1),
+    rgba(42, 82, 152, 1)
+  );
+}

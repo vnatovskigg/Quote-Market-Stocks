@@ -3,6 +3,7 @@ const getNavigation = (user) => {
     {
       title: "About",
       link: "/about",
+      logout: false,
     },
     {
       title: "Contact",
