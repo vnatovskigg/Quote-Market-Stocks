@@ -42,6 +42,7 @@ const App = (props) => {
       .then((res) => {
         if (res.status) {
           logIn({
+            stocks: res.user.stocks,
             username: res.user.username,
             id: res.user._id,
           });

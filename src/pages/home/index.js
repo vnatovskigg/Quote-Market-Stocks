@@ -10,11 +10,14 @@ const Home = () => {
   today = JSON.stringify(today).slice(1, 11);
 
   const getArticles = async () => {
-    const res = await fetch("https://newsapi.org/v2/top-headlines?country=us", {
-      headers: {
-        "X-Api-Key": "e2106b473b3e4f678ac492c1af2d052e",
-      },
-    });
+    const res = await fetch(
+      "https://newsapi.org/v2/top-headlines?sources=cnn",
+      {
+        headers: {
+          "X-Api-Key": "e2106b473b3e4f678ac492c1af2d052e",
+        },
+      }
+    );
 
     const data = await res.json();
     return data.articles;

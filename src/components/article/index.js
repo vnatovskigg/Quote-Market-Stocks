@@ -5,14 +5,19 @@ const Article = ({ author, title, url, imageUrl, content }) => {
   return (
     <div className={styles.container}>
       <div className={styles.image}>
-        <a href={url} target="_blank">
+        <a href={url} target="_blank" rel="noopener noreferrer">
           <img src={imageUrl} alt={title}></img>
         </a>
       </div>
 
       <div className={styles.contents}>
         <p>
-          <a className={styles.title} href={url} target="_blank">
+          <a
+            className={styles.title}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {title}
           </a>
         </p>
@@ -20,7 +25,12 @@ const Article = ({ author, title, url, imageUrl, content }) => {
         <div className={styles.user}>
           <span>
             <div>
-              <a href={url} target="_blank" className={styles.read}>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.read}
+              >
                 Read More
               </a>
             </div>

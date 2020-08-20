@@ -1,0 +1,58 @@
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+  z-index: 101;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.title {
+  background-color: rosybrown;
+  padding: 5px;
+  text-align: center;
+}
+
+.stockInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: royalblue;
+  height: 45%;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.newsFeed {
+  background-color: saddlebrown;
+  height: 45%;
+  padding: 5px;
+  margin-top: 10px;
+}

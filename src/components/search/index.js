@@ -3,11 +3,18 @@ import { FaSearch } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import styles from "./index.module.css";
 import TickerSymbols from "../../services/data";
+import Modal from "../modal";
 
 const Search = () => {
+  const modalRef = React.useRef();
   const [openSearch, setOpenSearch] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [text, setText] = useState("");
+  const [stock, setStock] = useState({});
+
+  const openModal = () => {
+    modalRef.current.openModal();
+  };
 
   const onTextChanged = (e) => {
     const value = e.target.value.toLowerCase();
@@ -43,7 +50,14 @@ const Search = () => {
           {suggestions.map((item) => (
             <li
               key={item.symbol}
-              onClick={() => suggestionSelected(`${item.name}`)}
+              onClick={() => {
+                suggestionSelected(`${item.name}`);
+                openModal();
+                setStock({
+                  name: item.name,
+                  ticker: item.symbol,
+                });
+              }}
             >{`(${item.symbol}) ${item.name}`}</li>
           ))}
         </ul>
@@ -53,6 +67,8 @@ const Search = () => {
 
   return (
     <div className={styles.container}>
+      <Modal ref={modalRef} stock={stock} />
+
       <div className={styles["search-bar"]}>
         <input
           type="text"
