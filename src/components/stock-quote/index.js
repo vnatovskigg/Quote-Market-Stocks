@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import {
   AiOutlineCaretRight,
   AiFillStar,
@@ -14,6 +15,7 @@ function Quote(props) {
     changeIsPositive: true,
   });
   const context = useContext(UserContext);
+  const history = useHistory();
 
   const yahooFinanceURL = `https://finance.yahoo.com/quote/`;
   const api_key = process.env.REACT_APP_MARKET_API_KEY;
@@ -40,9 +42,27 @@ function Quote(props) {
         companyName,
         week52High: week52High.toFixed(2),
         week52Low: week52Low.toFixed(2),
+        symbol: props.ticker,
       },
       changeIsPositive: change < 0 ? false : change > 0 ? true : "",
     });
+  };
+
+  const addToWatchlist = async () => {
+    const id = context.user.id;
+    const promise = await fetch(`http://localhost:8888/api/user/update/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        stock: state.quote,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await promise.json();
+    console.log(data);
+    history.push("/");
   };
 
   useEffect(() => {
@@ -63,7 +83,7 @@ function Quote(props) {
           </a>
         </h3>
         {context.user.loggedIn ? (
-          <AiFillStar className={styles.favourite} />
+          <AiFillStar onClick={addToWatchlist} className={styles.favourite} />
         ) : null}
       </div>
 
