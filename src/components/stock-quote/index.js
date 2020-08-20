@@ -1,74 +1,79 @@
-import React, { useState, useEffect } from "react";
-import { AiOutlineCaretDown } from "react-icons/ai";
-import { AiOutlineCaretUp } from "react-icons/ai";
-import { AiOutlineCaretRight } from "react-icons/ai";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  AiOutlineCaretRight,
+  AiFillStar,
+  AiOutlineCaretUp,
+  AiOutlineCaretDown,
+} from "react-icons/ai";
 import styles from "./index.module.css";
+import UserContext from "../../Context";
 
 function Quote(props) {
   const [state, setState] = useState({
     quote: {},
     changeIsPositive: true,
   });
+  const context = useContext(UserContext);
 
-  const API_KEY = "JMDFANIQC0K37BFZ";
   const yahooFinanceURL = `https://finance.yahoo.com/quote/`;
-  const stockData = {
-    SPOT: "Spotify Technology",
-    AAPL: "Apple Inc.",
-    ATVI: "Activision Blizzard",
-    DIS: "Walt Disney Co",
-    KO: "Coca-Cola Co",
+  const api_key = process.env.REACT_APP_MARKET_API_KEY;
+
+  const getData = async (tick) => {
+    const res = await fetch(
+      `https://cloud.iexapis.com/stable/stock/${tick}/quote?token=${api_key}`
+    );
+    const data = await res.json();
+    const {
+      latestPrice,
+      change,
+      changePercent,
+      companyName,
+      week52High,
+      week52Low,
+    } = data;
+
+    setState({
+      quote: {
+        latestPrice: latestPrice.toFixed(2),
+        change: change.toFixed(2),
+        changePercent: changePercent.toFixed(2),
+        companyName,
+        week52High: week52High.toFixed(2),
+        week52Low: week52Low.toFixed(2),
+      },
+      changeIsPositive: change < 0 ? false : change > 0 ? true : "",
+    });
   };
 
-  const nameMatch = Object.keys(stockData).find((key) => key === props.ticker);
-  const name = stockData[nameMatch] + ` (${nameMatch})`;
-
   useEffect(() => {
-    fetch(
-      // `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${props.ticker}&apikey=${API_KEY}`
-      `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${props.ticker}&apikey=${API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const price = Number(data["Global Quote"]["05. price"]).toFixed(2);
-        const diff = Number(data["Global Quote"]["09. change"]).toFixed(2);
-        const changePercent = data["Global Quote"]["10. change percent"];
-        const change = Number(
-          changePercent.slice(0, changePercent.length - 1)
-        ).toFixed(2);
-
-        setState({
-          quote: {
-            price,
-            diff,
-            change,
-            name,
-          },
-          changeIsPositive: diff < 0 ? false : diff > 0 ? true : "",
-        });
-      });
+    getData(props.ticker);
   }, []);
 
   let displayPrice =
-    state.quote.diff > 0
-      ? `+${state.quote.diff} (+${state.quote.change}%) `
-      : `${state.quote.diff} (${state.quote.change}%) `;
+    state.quote.change > 0
+      ? `+${state.quote.change} (+${state.quote.changePercent}%) `
+      : `${state.quote.change} (${state.quote.changePercent}%) `;
 
   return (
     <div className={styles.quote}>
-      <h3 className={styles["stock-name"]}>
-        <a href={`${yahooFinanceURL}${props.ticker}`} target="_blank">
-          {state.quote.name}
-        </a>
-      </h3>
+      <div className={styles.header}>
+        <h3 className={styles["stock-name"]}>
+          <a href={`${yahooFinanceURL}${props.ticker}`} target="_blank">
+            {state.quote.companyName}
+          </a>
+        </h3>
+        {context.user.loggedIn ? (
+          <AiFillStar className={styles.favourite} />
+        ) : null}
+      </div>
 
-      <h4 className={styles["stock-price"]}>${state.quote.price}</h4>
+      <h4 className={styles["stock-price"]}>${state.quote.latestPrice}</h4>
 
       <p
         className={
           state.changeIsPositive
             ? styles["stock-price-change-pos"]
-            : state.quote.diff !== 0
+            : state.quote.change !== 0
             ? styles["stock-price-change-negative"]
             : styles["stock-price-change-none"]
         }
@@ -76,7 +81,7 @@ function Quote(props) {
         {displayPrice}
         {state.changeIsPositive ? (
           <AiOutlineCaretUp />
-        ) : state.quote.diff !== 0 ? (
+        ) : state.quote.change !== 0 ? (
           <AiOutlineCaretDown />
         ) : (
           <AiOutlineCaretRight />
