@@ -22,7 +22,8 @@ const Login = () => {
         password,
       },
       (user) => {
-        console.log("Success");
+        console.log("User", user);
+        console.log("Context-user", context.user);
         context.logIn(user);
         history.push("/");
       },

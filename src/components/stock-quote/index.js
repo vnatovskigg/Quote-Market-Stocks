@@ -61,7 +61,7 @@ function Quote(props) {
     });
 
     const data = await promise.json();
-    console.log(data);
+    context.logIn(data);
     history.push("/");
   };
 

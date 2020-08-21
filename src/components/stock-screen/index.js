@@ -9,18 +9,18 @@ function Screen() {
 
   useEffect(() => {
     if (context.user !== null) {
+      console.log(context.user);
       setStocks(context.user.stocks);
     }
   }, [context.user]);
 
-  console.log(stocks);
   return (
     <div className={styles["stock-screen"]}>
-      {/* {stocks.length > 1
+      {stocks !== undefined && stocks.length > 0
         ? stocks.map((stock) => {
-            return <Quote ticker={stock.symbol} />;
+            return <Quote key={stock.latestPrice} ticker={stock.symbol} />;
           })
-        : null} */}
+        : null}
     </div>
   );
 }
