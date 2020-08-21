@@ -7,7 +7,6 @@ import Login from "./pages/login";
 import Portfolio from "./pages/portfolio";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
-import Logout from "./components/logout";
 
 const Navigation = () => {
   return (
@@ -20,7 +19,7 @@ const Navigation = () => {
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
-        <Route path="/logout" component={Logout} />
+        // TODO
         {/* <Route component={ErrorPage} /> */}
       </Switch>
     </BrowserRouter>

@@ -17,10 +17,6 @@ const getNavigation = (user) => {
       title: "Profile",
       link: `/profile/${user && user.id}`,
     },
-    {
-      title: "Logout",
-      link: "/logout",
-    },
   ];
 
   const guestLinks = [
