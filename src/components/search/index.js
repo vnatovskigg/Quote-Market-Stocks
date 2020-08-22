@@ -34,11 +34,6 @@ const Search = () => {
     setText(value);
   };
 
-  function suggestionSelected(value) {
-    setText(value);
-    setSuggestions([]);
-  }
-
   const renderSuggestions = () => {
     if (suggestions.length === 0) {
       return null;
@@ -51,8 +46,9 @@ const Search = () => {
             <li
               key={item.symbol}
               onClick={() => {
-                suggestionSelected(`${item.name}`);
                 openModal();
+                setText("");
+                setSuggestions([]);
                 setStock({
                   name: item.name,
                   ticker: item.symbol,

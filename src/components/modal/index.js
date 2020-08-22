@@ -33,7 +33,7 @@ const Modal = forwardRef((props, ref) => {
         <div className={styles.content}>
           <h1 className={styles.title}>{name}</h1>
           <div className={styles.stockInfo}>
-            <Quote ticker={ticker} />
+            <Quote ticker={ticker} theme="dark" />
           </div>
           <div className={styles.newsFeed}></div>
         </div>

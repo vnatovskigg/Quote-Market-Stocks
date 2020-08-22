@@ -17,8 +17,14 @@ function Screen() {
   return (
     <div className={styles["stock-screen"]}>
       {stocks !== undefined && stocks.length > 0
-        ? stocks.map((stock) => {
-            return <Quote key={stock.latestPrice} ticker={stock.symbol} />;
+        ? stocks.map((stock, index) => {
+            if (index < 5) {
+              return (
+                <div key={index} className={styles.stock}>
+                  <Quote key={stock.latestPrice} ticker={stock.symbol} />
+                </div>
+              );
+            }
           })
         : null}
     </div>

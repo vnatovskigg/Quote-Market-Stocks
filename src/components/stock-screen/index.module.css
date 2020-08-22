@@ -1,6 +1,12 @@
 .stock-screen {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: flex; /* establish flex container */
+  flex-direction: row; /* default value; can be omitted */
+  flex-wrap: nowrap; /* default value; can be omitted */
+  justify-content: space-between;
+}
+
+.stock {
+  width: 20%;
+  height: 20vh;
   padding: 5px;
 }

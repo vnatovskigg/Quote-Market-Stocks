@@ -5,6 +5,7 @@ import getCookie from "./services/cookie";
 const App = (props) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [update, setUpdate] = useState(false);
 
   const logIn = (user) => {
     setUser({
@@ -19,6 +20,26 @@ const App = (props) => {
       user: null,
       loggedIn: false,
     });
+  };
+
+  const addToWatchlist = async (quote, id) => {
+    const promise = await fetch(`http://localhost:8888/api/user/update/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        stock: quote,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await promise.json();
+    setUser({
+      user: data,
+      loggedIn: true,
+    });
+    setUpdate(!update);
+    console.log(update);
   };
 
   useEffect(() => {
@@ -52,7 +73,7 @@ const App = (props) => {
         }
         setLoading(false);
       });
-  }, []);
+  }, [update]);
 
   // if (loading) {
   //   return <div>Loading....</div>;
@@ -64,6 +85,7 @@ const App = (props) => {
         user,
         logIn,
         logOut,
+        addToWatchlist,
       }}
     >
       {props.children}

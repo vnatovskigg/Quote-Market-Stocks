@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   AiOutlineCaretRight,
   AiFillStar,
@@ -48,26 +48,9 @@ function Quote(props) {
     });
   };
 
-  const addToWatchlist = async () => {
-    const id = context.user.id;
-    const promise = await fetch(`http://localhost:8888/api/user/update/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        stock: state.quote,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await promise.json();
-    context.logIn(data);
-    history.push("/");
-  };
-
   useEffect(() => {
     getData(props.ticker);
-  }, []);
+  }, [props.ticker]);
 
   let displayPrice =
     state.quote.change > 0
@@ -75,7 +58,7 @@ function Quote(props) {
       : `${state.quote.change} (${state.quote.changePercent}%) `;
 
   return (
-    <div className={styles.quote}>
+    <div className={props.theme === "light" ? styles.quote : styles.quoteDark}>
       <div className={styles.header}>
         <h3 className={styles["stock-name"]}>
           <a href={`${yahooFinanceURL}${props.ticker}`} target="_blank">
@@ -83,30 +66,35 @@ function Quote(props) {
           </a>
         </h3>
         {context.user.loggedIn ? (
-          <AiFillStar onClick={addToWatchlist} className={styles.favourite} />
+          <AiFillStar
+            onClick={() => context.addToWatchlist(state.quote, context.user.id)}
+            className={styles.favourite}
+          />
         ) : null}
       </div>
-
-      <h4 className={styles["stock-price"]}>${state.quote.latestPrice}</h4>
-
-      <p
-        className={
-          state.changeIsPositive
-            ? styles["stock-price-change-pos"]
-            : state.quote.change !== 0
-            ? styles["stock-price-change-negative"]
-            : styles["stock-price-change-none"]
-        }
-      >
-        {displayPrice}
-        {state.changeIsPositive ? (
-          <AiOutlineCaretUp />
-        ) : state.quote.change !== 0 ? (
-          <AiOutlineCaretDown />
-        ) : (
-          <AiOutlineCaretRight />
-        )}
-      </p>
+      <div className={styles["stock-price"]}>
+        <h4>${state.quote.latestPrice}</h4>
+      </div>
+      <div className={styles.changeWrapper}>
+        <p
+          className={
+            state.changeIsPositive
+              ? styles["stock-price-change-pos"]
+              : state.quote.change !== 0
+              ? styles["stock-price-change-negative"]
+              : styles["stock-price-change-none"]
+          }
+        >
+          {displayPrice}
+          {state.changeIsPositive ? (
+            <AiOutlineCaretUp />
+          ) : state.quote.change !== 0 ? (
+            <AiOutlineCaretDown />
+          ) : (
+            <AiOutlineCaretRight />
+          )}
+        </p>
+      </div>
     </div>
   );
 }
