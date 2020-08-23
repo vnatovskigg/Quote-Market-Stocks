@@ -1,5 +1,29 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## About my Project
+
+Hello and welcome. My name is Velizar and this is my simple stocks tracker. I follow the financial markets closely and wanted to create an app that allows me to monitor my favourite companies, read news related to them and follow how they perform.
+
+\*\* The app is best viewed on laptop/PC as I've not made the design responsive yet
+
+\*\* I have used custom design and self-written css from scratch.
+
+\*\* I tried to showcase my usage of React, and tried to use all the things I learned in the course and/or knew before it.
+
+\*\* The only thing I haven't made myself would be the market widget below the nav.
+
+## What can you do with my Stocks Tracker
+
+1. Without a registration, you could check the news feed, and search for individual stocks in order to see their current price and other relevant information.
+
+2. A registered user has access to a portfolio, where he can add stocks to watchlist in order to monitor their performance more closely.
+
+## What more is to be done
+
+The app is far from finished. I have yet to implement extensive monitoring options for the chosed portfolio stocks, such as ROI, market history movements, graphs and other feature related to the data provided.
+
+For the design itself - I want to make it responsive, which it currently isn't.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -36,33 +60,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
