@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import {
   AiOutlineCaretRight,
   AiFillStar,
@@ -14,8 +13,8 @@ function Quote(props) {
     quote: {},
     changeIsPositive: true,
   });
+
   const context = useContext(UserContext);
-  const history = useHistory();
 
   const yahooFinanceURL = `https://finance.yahoo.com/quote/`;
   const api_key = process.env.REACT_APP_MARKET_API_KEY;
@@ -67,7 +66,9 @@ function Quote(props) {
         </h3>
         {context.user.loggedIn ? (
           <AiFillStar
-            onClick={() => context.addToWatchlist(state.quote, context.user.id)}
+            onClick={() => {
+              context.addToWatchlist(state.quote, context.user.id);
+            }}
             className={styles.favourite}
           />
         ) : null}

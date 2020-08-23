@@ -31,7 +31,6 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
   z-index: 101;
   overflow-y: auto;
-  padding: 20px;
 }
 
 .title {
@@ -42,17 +41,36 @@
 
 .stockInfo {
   display: flex;
+  position: relative;
+  left: 10%;
   align-items: center;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 45%;
+  width: 80%;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.newsContainer {
   background-color: rgba(0, 0, 0, 0.8);
   height: 45%;
   padding: 5px;
   margin-top: 10px;
 }
 
+.newsTitle {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 10%;
+  text-align: center;
+}
+
 .newsFeed {
-  background-color: saddlebrown;
-  height: 45%;
-  padding: 5px;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 90%;
 }

@@ -9,7 +9,6 @@ function Screen() {
 
   useEffect(() => {
     if (context.user !== null) {
-      console.log(context.user);
       setStocks(context.user.stocks);
     }
   }, [context.user]);

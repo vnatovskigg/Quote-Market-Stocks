@@ -39,7 +39,6 @@ const App = (props) => {
       loggedIn: true,
     });
     setUpdate(!update);
-    console.log(update);
   };
 
   useEffect(() => {

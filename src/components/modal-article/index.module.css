@@ -1,0 +1,13 @@
+.container {
+  width: 33.33%;
+  padding: 10px;
+}
+
+.title {
+  height: 50%;
+}
+
+.title a {
+  text-decoration: none;
+  color: #8aa9ff;
+}
