@@ -1,0 +1,29 @@
+.portfolioStock {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 20px;
+  margin-bottom: 5px;
+  width: 70%;
+  height: 5vh;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.portfolioStock h3 {
+  font-size: 12pt;
+}
+
+.price {
+  margin-left: 40px;
+}
+
+.high {
+  margin-left: 40px;
+  color: green;
+}
+
+.low {
+  margin-left: 40px;
+  color: red;
+}
