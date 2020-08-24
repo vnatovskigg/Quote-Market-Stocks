@@ -27,7 +27,7 @@ const Profile = () => {
   useEffect(() => {
     const id = params.id;
     getData(id);
-  }, []);
+  });
 
   return (
     <div className={styles.container}>

@@ -19,37 +19,36 @@ function Quote(props) {
   const yahooFinanceURL = `https://finance.yahoo.com/quote/`;
   const api_key = process.env.REACT_APP_MARKET_API_KEY;
 
-  const getData = async (tick) => {
-    const res = await fetch(
-      `https://cloud.iexapis.com/stable/stock/${tick}/quote?token=${api_key}`
-    );
-    const data = await res.json();
-    const {
-      latestPrice,
-      change,
-      changePercent,
-      companyName,
-      week52High,
-      week52Low,
-    } = data;
-
-    setState({
-      quote: {
-        latestPrice: latestPrice.toFixed(2),
-        change: change.toFixed(2),
-        changePercent: changePercent.toFixed(2),
-        companyName,
-        week52High: week52High.toFixed(2),
-        week52Low: week52Low.toFixed(2),
-        symbol: props.ticker,
-      },
-      changeIsPositive: change < 0 ? false : change > 0 ? true : "",
-    });
-  };
-
   useEffect(() => {
+    const getData = async (tick) => {
+      const res = await fetch(
+        `https://cloud.iexapis.com/stable/stock/${tick}/quote?token=${api_key}`
+      );
+      const data = await res.json();
+      const {
+        latestPrice,
+        change,
+        changePercent,
+        companyName,
+        week52High,
+        week52Low,
+      } = data;
+
+      setState({
+        quote: {
+          latestPrice: latestPrice.toFixed(2),
+          change: change.toFixed(2),
+          changePercent: changePercent.toFixed(2),
+          companyName,
+          week52High: week52High.toFixed(2),
+          week52Low: week52Low.toFixed(2),
+          symbol: props.ticker,
+        },
+        changeIsPositive: change < 0 ? false : change > 0 ? true : "",
+      });
+    };
     getData(props.ticker);
-  }, [props.ticker]);
+  }, [props.ticker, api_key]);
 
   let displayPrice =
     state.quote.change > 0
@@ -60,7 +59,11 @@ function Quote(props) {
     <div className={props.theme === "light" ? styles.quote : styles.quoteDark}>
       <div className={styles.header}>
         <h3 className={styles["stock-name"]}>
-          <a href={`${yahooFinanceURL}${props.ticker}`} target="_blank">
+          <a
+            href={`${yahooFinanceURL}${props.ticker}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {state.quote.companyName}
           </a>
         </h3>

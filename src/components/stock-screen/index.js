@@ -24,6 +24,7 @@ function Screen() {
                 </div>
               );
             }
+            return null;
           })
         : null}
     </div>

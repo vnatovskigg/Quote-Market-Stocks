@@ -9,7 +9,14 @@ const Logo = () => {
   const goHome = () => {
     history.push("/");
   };
-  return <img src={logo} className={styles.logo} onClick={goHome}></img>;
+  return (
+    <img
+      src={logo}
+      alt={"Stocks-Tracker"}
+      className={styles.logo}
+      onClick={goHome}
+    ></img>
+  );
 };
 
 export default Logo;

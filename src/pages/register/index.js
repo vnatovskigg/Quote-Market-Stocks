@@ -8,7 +8,7 @@ import UserContext from "../../Context";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
-  const { register, handleSubmit, errors, reset, getValues } = useForm();
+  const { register, handleSubmit, errors, getValues } = useForm();
   const context = useContext(UserContext);
   const history = useHistory();
 

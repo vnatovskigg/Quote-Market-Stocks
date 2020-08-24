@@ -9,7 +9,7 @@ function About() {
     <ContentWrapper title="About">
       <h3 className={styles.name}>Velizar Natovski</h3>
       <div className={styles["profile-pic"]}>
-        <img src={profilePic} />
+        <img src={profilePic} alt={"Velizar Natovski"} />
       </div>
       <Accordion
         title="What I do?"

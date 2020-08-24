@@ -46,15 +46,12 @@ const Modal = forwardRef((props, ref) => {
     async function fetchData() {
       if (name !== undefined) {
         let stockName = name.split(" ")[0].toLowerCase();
-        console.log(stockName);
         let data = await getArticles(stockName);
         data = data.slice(0, 3);
-        console.log(data);
         setArticles(data);
       }
     }
     fetchData();
-    console.log(articles);
   }, [name]);
 
   if (display) {
