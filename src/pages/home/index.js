@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import PageWrapper from "../../components/page-wrapper";
 import ContentWrapper from "../../components/content-wrapper";
 import Article from "../../components/article";
-import styles from "./index.module.css";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -33,7 +32,7 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper title="Home" date={today}>
+      <ContentWrapper date={today}>
         {articles.map((article, i) => {
           return (
             <Article

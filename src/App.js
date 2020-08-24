@@ -4,7 +4,7 @@ import getCookie from "./services/cookie";
 
 const App = (props) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [update, setUpdate] = useState(false);
 
   const logIn = (user) => {
@@ -46,7 +46,7 @@ const App = (props) => {
 
     if (!token) {
       logOut();
-      setLoading(false);
+      // setLoading(false);
       return;
     }
 
@@ -70,7 +70,7 @@ const App = (props) => {
         } else {
           logOut();
         }
-        setLoading(false);
+        // setLoading(false);
       });
   }, [update]);
 
