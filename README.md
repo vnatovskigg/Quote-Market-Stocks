@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## TODO
+
+- Make an aside component for storing indices, commodities, stocks, etc.
+- Add graphs!!!
+- Make search bar appear beneath nav on mobile view
 
 ## About my Project
 

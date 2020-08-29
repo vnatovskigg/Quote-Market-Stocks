@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageWrapper from "../../components/page-wrapper";
 import ContentWrapper from "../../components/content-wrapper";
 import Article from "../../components/article";
+import styles from "./index.module.css";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -33,18 +34,21 @@ const Home = () => {
   return (
     <PageWrapper>
       <ContentWrapper date={today}>
-        {articles.map((article, i) => {
-          return (
-            <Article
-              key={i}
-              title={article.title}
-              author={article.author}
-              content={article.content}
-              url={article.url}
-              imageUrl={article.urlToImage}
-            />
-          );
-        })}
+        <div className={styles.news}>
+          {articles.map((article, i) => {
+            return (
+              <Article
+                key={i}
+                title={article.title}
+                author={article.author}
+                content={article.content}
+                url={article.url}
+                imageUrl={article.urlToImage}
+                published={article.publishedAt.slice(11, 16)}
+              />
+            );
+          })}
+        </div>
       </ContentWrapper>
     </PageWrapper>
   );
