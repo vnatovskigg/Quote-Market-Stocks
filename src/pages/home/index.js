@@ -3,6 +3,7 @@ import PageWrapper from "../../components/page-wrapper";
 import ContentWrapper from "../../components/content-wrapper";
 import Article from "../../components/article";
 import styles from "./index.module.css";
+import MarketOverview from "../../components/market-overview";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -34,20 +35,25 @@ const Home = () => {
   return (
     <PageWrapper>
       <ContentWrapper date={today}>
-        <div className={styles.news}>
-          {articles.map((article, i) => {
-            return (
-              <Article
-                key={i}
-                title={article.title}
-                author={article.author}
-                content={article.content}
-                url={article.url}
-                imageUrl={article.urlToImage}
-                published={article.publishedAt.slice(11, 16)}
-              />
-            );
-          })}
+        <div className={styles.container}>
+          <div className={styles.news}>
+            {articles.map((article, i) => {
+              return (
+                <Article
+                  key={i}
+                  title={article.title}
+                  author={article.author}
+                  content={article.content}
+                  url={article.url}
+                  imageUrl={article.urlToImage}
+                  published={article.publishedAt.slice(11, 16)}
+                />
+              );
+            })}
+          </div>
+          <div className={styles.aside}>
+            <MarketOverview />
+          </div>
         </div>
       </ContentWrapper>
     </PageWrapper>
