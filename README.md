@@ -1,8 +1,10 @@
 ## TODO
 
-- Make an aside component for storing indices, commodities, stocks, etc.
-- Add graphs!!!
-- Make search bar appear beneath nav on mobile view
+[x] Make an aside component for storing indices, commodities, stocks, etc.
+[] Make news section in pages or scroll-loading
+[] Edit the aside to make it more dinamic
+[] Add graphs!!!
+[] Make search bar appear beneath nav on mobile view
 
 ## About my Project
 
