@@ -26,7 +26,7 @@ const Article = ({ author, title, url, imageUrl, content, published }) => {
         <div className={styles.text}>
           <p>{content}</p>
         </div>
-        <div class={styles.readMore}>
+        <div className={styles.readMore}>
           <a
             href={url}
             target="_blank"
