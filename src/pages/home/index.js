@@ -9,29 +9,31 @@ import MarketOverview from "../../components/market-overview";
 const Home = () => {
   const [articles, setArticles] = useState([]);
   const [articlePage, setArticlePage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
 
   const getArticles = async (page) => {
     const res = await fetch(
-      `http://newsapi.org/v2/everything?q=markets&language=en&sortBy=popularity&pageSize=6&page=${page}`,
-      {
-        headers: {
-          "X-Api-Key": "e2106b473b3e4f678ac492c1af2d052e",
-        },
-      }
+      `http://newsapi.org/v2/everything?q=markets&language=en&sortBy=popularity&pageSize=6&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
     );
-
+    let updatedArticles;
     const data = await res.json();
-    let updatedArticles = articles.concat(data.articles);
-
-    return updatedArticles;
+    if (data) {
+      updatedArticles = articles.concat(data.articles);
+    }
+    return undefined;
   };
 
   useEffect(() => {
     getArticles(articlePage).then((data) => {
-      setArticles(data);
-      setArticlePage(articlePage + 1);
+      console.log(data);
+      if (data) {
+        setArticles(data);
+        setArticlePage(articlePage + 1);
+      } else {
+        setHasMore(false);
+      }
     });
   }, []);
 
@@ -42,34 +44,43 @@ const Home = () => {
           <div className={styles.news}>
             <InfiniteScroll
               dataLength={articles.length}
+              height={"660px"}
               next={() => {
                 getArticles(articlePage).then((data) => {
-                  setArticles(data);
-                  console.log(articlePage);
-                  setArticlePage(articlePage + 1);
+                  console.log(data);
+                  if (data) {
+                    setArticles(data);
+                    setArticlePage(articlePage + 1);
+                  } else {
+                    setHasMore(false);
+                  }
                 });
               }}
-              hasMore={true}
-              scrollThreshold={1}
-              loader={<h4>Loading...</h4>}
+              hasMore={hasMore ? true : false}
               endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen it all</b>
+                <p className={styles.endScroll}>
+                  <b>You are all caught up :))</b>
                 </p>
               }
+              scrollThreshold={1}
+              loader={<h4>Loading...</h4>}
             >
               {articles.map((article, i) => {
-                return (
-                  <Article
-                    key={i}
-                    title={article.title}
-                    author={article.author}
-                    content={article.content}
-                    url={article.url}
-                    imageUrl={article.urlToImage}
-                    published={article.publishedAt.slice(11, 16)}
-                  />
-                );
+                if (article) {
+                  return (
+                    <Article
+                      key={i}
+                      title={article.title}
+                      author={article.author}
+                      content={article.content}
+                      url={article.url}
+                      imageUrl={article.urlToImage}
+                      published={article.publishedAt.slice(11, 16)}
+                    />
+                  );
+                } else {
+                  return;
+                }
               })}
             </InfiniteScroll>
           </div>

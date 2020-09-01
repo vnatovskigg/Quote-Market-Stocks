@@ -1,5 +1,6 @@
 ## TODO
 
+[] Make a spinner component for loading things
 [] Make modal pop-up effect
 [] Edit the aside to make it more dinamic
 [] Make search bar appear beneath nav on mobile view
