@@ -19,20 +19,24 @@ const Home = () => {
     );
     let updatedArticles;
     const data = await res.json();
-    if (data) {
+    console.log("API CALL: ", data.articles);
+
+    if (data.articles !== undefined) {
       updatedArticles = articles.concat(data.articles);
+      return updatedArticles;
     }
+
+    setHasMore(false);
     return undefined;
   };
 
   useEffect(() => {
     getArticles(articlePage).then((data) => {
-      console.log(data);
-      if (data) {
+      if (data !== undefined) {
         setArticles(data);
         setArticlePage(articlePage + 1);
       } else {
-        setHasMore(false);
+        return;
       }
     });
   }, []);
@@ -47,16 +51,15 @@ const Home = () => {
               height={"660px"}
               next={() => {
                 getArticles(articlePage).then((data) => {
-                  console.log(data);
-                  if (data) {
+                  if (data !== undefined) {
                     setArticles(data);
                     setArticlePage(articlePage + 1);
                   } else {
-                    setHasMore(false);
+                    return;
                   }
                 });
               }}
-              hasMore={hasMore ? true : false}
+              hasMore={hasMore}
               endMessage={
                 <p className={styles.endScroll}>
                   <b>You are all caught up :))</b>
