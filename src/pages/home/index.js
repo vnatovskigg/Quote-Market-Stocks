@@ -5,6 +5,7 @@ import ContentWrapper from "../../components/content-wrapper";
 import Article from "../../components/article";
 import styles from "./index.module.css";
 import MarketOverview from "../../components/market-overview";
+import Spinner from "../../components/spinner";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -66,7 +67,7 @@ const Home = () => {
                 </p>
               }
               scrollThreshold={1}
-              loader={<h4>Loading...</h4>}
+              loader={<Spinner />}
             >
               {articles.map((article, i) => {
                 if (article) {
