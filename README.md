@@ -1,13 +1,14 @@
 ## TODO
 
-[] Make a spinner component for loading things
+[] Customize news-feed scroll bar 
 [] Use the whole width of the screen to fill content
 [] Make modal pop-up effect
 [] Edit the aside to make it more dinamic
 [] Make search bar appear beneath nav on mobile view
 [] Add graphs!!!
-[x] Make news section in pages or scroll-loading
-[x] Make an aside component for storing indices, commodities, stocks, etc.
+[X] Make a spinner component for loading things
+[X] Make news section in pages or scroll-loading
+[X] Make an aside component for storing indices, commodities, stocks, etc.
 
 ## About my Project
 
