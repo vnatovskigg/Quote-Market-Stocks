@@ -8,6 +8,21 @@
   margin-right: auto;
 }
 
+.newsElement::-webkit-scrollbar {
+  width: 11px;
+}
+.newsElement {
+  scrollbar-width: thin;
+  scrollbar-color: #3c91bb #149bd4;
+}
+.newsElement::-webkit-scrollbar-track {
+  background: rgba(2, 149, 235, 0.1);
+}
+.newsElement::-webkit-scrollbar-thumb {
+  background-color: rgba(207, 216, 220, 0.6);
+  border-radius: 6px;
+}
+
 .aside {
   margin-left: auto;
   width: 33%;
