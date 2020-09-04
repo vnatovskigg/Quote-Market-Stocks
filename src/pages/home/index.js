@@ -48,6 +48,7 @@ const Home = () => {
         <div className={styles.container}>
           <div className={styles.news}>
             <InfiniteScroll
+              className={styles.newsElement}
               dataLength={articles.length}
               height={"660px"}
               next={() => {
