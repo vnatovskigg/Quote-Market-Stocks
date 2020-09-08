@@ -12,6 +12,7 @@
   width: 11px;
 }
 .newsElement {
+  padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: #3c91bb #149bd4;
 }
