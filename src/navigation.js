@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import Portfolio from "./pages/portfolio";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
+import ArticlePage from "./pages/article-page";
 
 const Navigation = () => {
   return (
@@ -19,6 +20,7 @@ const Navigation = () => {
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
+        <Route path="/article/:title" component={ArticlePage} />
         {/* TODO*/}
         {/* <Route component={ErrorPage} /> */}
       </Switch>

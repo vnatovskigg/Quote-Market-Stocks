@@ -72,6 +72,9 @@ const Home = () => {
             >
               {articles.map((article, i) => {
                 if (article) {
+                  console.log(article.title);
+                  // TODO convert title to url format
+                  // Finish ArticlePage
                   return (
                     <Article
                       key={i}
@@ -79,6 +82,7 @@ const Home = () => {
                       author={article.author}
                       content={article.content}
                       url={article.url}
+                      // header={header}
                       imageUrl={article.urlToImage}
                       published={article.publishedAt.slice(11, 16)}
                     />
