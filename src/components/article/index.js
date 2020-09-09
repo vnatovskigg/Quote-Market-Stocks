@@ -14,7 +14,7 @@ const Article = ({
   return (
     <div className={styles.container}>
       <div className={styles.image}>
-        <Link to={`/article/${header}`}>
+        <Link to={`/article/${title}`}>
           <img src={imageUrl} alt={title}></img>
         </Link>
       </div>

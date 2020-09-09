@@ -42,6 +42,18 @@ const Home = () => {
     });
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:8888/api/articles", {
+      method: "POST",
+      body: JSON.stringify({
+        articles,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }, [articles]);
+
   return (
     <PageWrapper>
       <ContentWrapper date={today}>
@@ -72,9 +84,8 @@ const Home = () => {
             >
               {articles.map((article, i) => {
                 if (article) {
-                  console.log(article.title);
-                  // TODO convert title to url format
-                  // Finish ArticlePage
+                  let header = article.title;
+                  header = header.replace(/\s+/g, "-").toLowerCase();
                   return (
                     <Article
                       key={i}
@@ -82,7 +93,7 @@ const Home = () => {
                       author={article.author}
                       content={article.content}
                       url={article.url}
-                      // header={header}
+                      header={header}
                       imageUrl={article.urlToImage}
                       published={article.publishedAt.slice(11, 16)}
                     />
