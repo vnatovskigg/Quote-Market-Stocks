@@ -1,13 +1,22 @@
 import React from "react";
 import styles from "./index.module.css";
+import { Link } from "react-router-dom";
 
-const Article = ({ author, title, url, imageUrl, content, published }) => {
+const Article = ({
+  author,
+  title,
+  url,
+  imageUrl,
+  content,
+  published,
+  header,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.image}>
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <Link to={`/article/${title}`}>
           <img src={imageUrl} alt={title}></img>
-        </a>
+        </Link>
       </div>
 
       <div className={styles.contents}>
