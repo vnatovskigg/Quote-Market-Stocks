@@ -1,0 +1,6 @@
+[submodule "REST_API"]
+	url = https://github.com/vnatovskigg/StocksAPP-Back-End.git
+	branch = Development
+[submodule "Submod"]
+	url = https://github.com/vnatovskigg/StocksAPP-Back-End.git
+	branch = Development
