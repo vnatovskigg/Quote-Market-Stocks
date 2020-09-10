@@ -11,6 +11,8 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [articlePage, setArticlePage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [id, setId] = useState("");
+
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
 
@@ -43,15 +45,34 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8888/api/articles", {
-      method: "POST",
+    if (articles.length > 0 && articles.length <= 6) {
+      fetch("http://localhost:8888/api/articles", {
+        method: "POST",
+        body: JSON.stringify({
+          articles,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setId(data._id))
+        .catch((err) => console.error(err));
+    }
+
+    fetch(`http://localhost:8888/api/articles/${id}`, {
+      method: "PUT",
       body: JSON.stringify({
         articles,
+        id,
       }),
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
   }, [articles]);
 
   return (
