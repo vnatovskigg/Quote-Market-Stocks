@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 const ArticlePage = () => {
   let { title } = useParams();
-  const [article, setArticle] = useState({});
+  const [article, setArticle] = useState(false);
 
   const fetchArticle = async (title) => {
     const res = await fetch(`http://localhost:8888/api/articles/${title}`);
@@ -14,7 +14,14 @@ const ArticlePage = () => {
 
   useEffect(() => {
     fetchArticle(title)
-      .then((data) => setArticle(data))
+      .then((data) => {
+        data.forEach((article) => {
+          if (article.title === title) {
+            setArticle(article);
+            return;
+          }
+        });
+      })
       .catch((err) => console.error(err));
   }, []);
 
