@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { useParams } from "react-router-dom";
+import PageWrapper from "../../components/page-wrapper";
+import ContentWrapper from "../../components/content-wrapper";
 
 const ArticlePage = () => {
   let { title } = useParams();
@@ -26,10 +28,19 @@ const ArticlePage = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className={styles.title}>Hello world!</h1>
-      <p style={{ color: "blue" }}>{article ? article.title : "Loading"}</p>
-    </div>
+    <PageWrapper>
+      <ContentWrapper
+        // title={article ? article.title : "Loading..."}
+        layout="row"
+      >
+        <div className={styles.articleContainer}>
+          <h1>Article Section</h1>
+        </div>
+        <div className={styles.aside}>
+          <h1>Suggestions Aside</h1>
+        </div>
+      </ContentWrapper>
+    </PageWrapper>
   );
 };
 

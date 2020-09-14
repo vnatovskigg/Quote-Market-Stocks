@@ -38,7 +38,7 @@ const Login = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper title="Login">
+      <ContentWrapper title="Login" layout="column">
         <form
           className={styles["login-form"]}
           onSubmit={handleSubmit(onSubmit)}

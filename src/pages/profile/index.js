@@ -16,7 +16,7 @@ const ProfilePage = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper title={`${username} Profile`}>
+      <ContentWrapper title={`${username} Profile`} layout="column">
         <Profile></Profile>
       </ContentWrapper>
     </PageWrapper>
