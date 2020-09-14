@@ -18,7 +18,7 @@ const PortfolioPage = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper title={`${username} Portfolio`}>
+      <ContentWrapper title={`${username} Portfolio`} layout="column">
         {stocks !== undefined
           ? stocks.map((stock, index) => {
               return <Portfolio key={index} stock={stock} />;

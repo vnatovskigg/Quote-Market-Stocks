@@ -78,7 +78,7 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper date={today}>
+      <ContentWrapper date={today} layout="row">
         <div className={styles.container}>
           <div className={styles.news}>
             <InfiniteScroll

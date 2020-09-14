@@ -35,7 +35,7 @@ const Register = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper title="Register">
+      <ContentWrapper title="Register" layout="column">
         <form
           className={styles["register-form"]}
           onSubmit={handleSubmit(onSubmit)}
