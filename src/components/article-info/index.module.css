@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2% 2%;
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 60%;
+  min-height: 70vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  margin-bottom: 1%;
+}
+
+.title h1 {
+  font-size: 19pt;
+  font-weight: 600;
+  margin-bottom: 2%;
+}
+
+.sourceInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.source {
+  margin-right: 2%;
+  color: rgba(231, 231, 231, 0.9);
+}
+
+.source a {
+  text-decoration: none;
+  color: white;
+}
+
+.createdAt {
+  margin-left: auto;
+  color: rgba(231, 231, 231, 0.9);
+}

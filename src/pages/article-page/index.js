@@ -3,13 +3,14 @@ import styles from "./index.module.css";
 import { useParams } from "react-router-dom";
 import PageWrapper from "../../components/page-wrapper";
 import ContentWrapper from "../../components/content-wrapper";
+import ArticleInfo from "../../components/article-info";
 
 const ArticlePage = () => {
   let { title } = useParams();
   const [article, setArticle] = useState(false);
 
-  const fetchArticle = async (title) => {
-    const res = await fetch(`http://localhost:8888/api/articles/${title}`);
+  const fetchArticle = async () => {
+    const res = await fetch(`http://localhost:8888/api/articles/`);
     const data = await res.json();
     return data;
   };
@@ -19,6 +20,7 @@ const ArticlePage = () => {
       .then((data) => {
         data.forEach((article) => {
           if (article.title === title) {
+            console.log("ARTICLE", article);
             setArticle(article);
             return;
           }
@@ -33,12 +35,7 @@ const ArticlePage = () => {
         // title={article ? article.title : "Loading..."}
         layout="row"
       >
-        <div className={styles.articleContainer}>
-          <h1>Article Section</h1>
-        </div>
-        <div className={styles.aside}>
-          <h1>Suggestions Aside</h1>
-        </div>
+        {article ? <ArticleInfo article={article} /> : "Loading..."}
       </ContentWrapper>
     </PageWrapper>
   );
