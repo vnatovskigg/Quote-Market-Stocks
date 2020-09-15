@@ -1,17 +1,7 @@
-.articleContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60%;
-  min-height: 30vh;
-  background-color: blanchedalmond;
-}
-
 .aside {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40%;
-  min-height: 30vh;
-  background-color: burlywood;
+  background-color: rgba(83, 83, 83, 0.5);
 }
