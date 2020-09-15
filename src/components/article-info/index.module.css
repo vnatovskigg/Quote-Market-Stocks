@@ -23,11 +23,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 1%;
 }
 
 .source {
   margin-right: 2%;
   color: rgba(231, 231, 231, 0.9);
+  padding-right: 2%;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 
 .source a {
@@ -36,6 +39,17 @@
 }
 
 .createdAt {
-  margin-left: auto;
   color: rgba(231, 231, 231, 0.9);
+}
+
+.poster {
+  width: 90%;
+  height: 55vh;
+  background-color: salmon;
+  margin-bottom: 1%;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
 }

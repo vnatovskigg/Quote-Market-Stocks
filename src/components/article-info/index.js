@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 const ArticleInfo = ({ article }) => {
   let date = article.publishedAt.split("T").join(" ");
   date = date.split("Z")[0];
+  console.log("article-content", article.content);
 
   return (
     <div className={styles.container}>
@@ -31,6 +32,10 @@ const ArticleInfo = ({ article }) => {
           <small>{`Published:   ${date}`}</small>
         </span>
       </div>
+      <div className={styles.poster}>
+        <img src={article.urlToImage}></img>
+      </div>
+      <div className={styles.content}>{article.content}</div>
     </div>
   );
 };
