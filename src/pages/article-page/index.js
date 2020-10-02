@@ -16,18 +16,17 @@ const ArticlePage = () => {
   };
 
   useEffect(() => {
-    fetchArticle(title)
+    fetchArticle()
       .then((data) => {
         data.forEach((article) => {
           if (article.title === title) {
-            console.log("ARTICLE", article);
             setArticle(article);
             return;
           }
         });
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [article]);
 
   return (
     <PageWrapper>
