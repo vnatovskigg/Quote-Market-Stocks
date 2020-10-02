@@ -2,19 +2,12 @@ import React from "react";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 
-const Article = ({
-  author,
-  title,
-  url,
-  imageUrl,
-  content,
-  published,
-  header,
-}) => {
+const Article = ({ author, title, url, imageUrl, content, published }) => {
+  const urlEncoded = encodeURIComponent(title);
   return (
     <div className={styles.container}>
       <div className={styles.image}>
-        <Link to={`/article/${title}`}>
+        <Link to={`/article/${urlEncoded}`}>
           <img src={imageUrl} alt={title}></img>
         </Link>
       </div>

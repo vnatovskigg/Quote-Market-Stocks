@@ -24,6 +24,38 @@ const Home = () => {
     const data = await res.json();
     console.log("API CALL: ", data.articles);
 
+    data.articles.forEach(
+      ({
+        title,
+        content,
+        description,
+        author,
+        publishedAt,
+        url,
+        urlToImage,
+        source,
+      }) => {
+        fetch("http://localhost:8888/api/articles", {
+          method: "POST",
+          body: JSON.stringify({
+            title,
+            content,
+            description,
+            author,
+            publishedAt,
+            url,
+            urlToImage,
+            source: source.name,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((addedArticle) => console.log(addedArticle))
+          .catch((err) => console.log(err));
+      }
+    );
+
     if (data.articles !== undefined) {
       updatedArticles = articles.concat(data.articles);
       return updatedArticles;
@@ -44,37 +76,37 @@ const Home = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (articles.length > 0 && articles.length <= 6) {
-      fetch("http://localhost:8888/api/articles", {
-        method: "POST",
-        body: JSON.stringify({
-          articles,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setId(data._id);
-        })
-        .catch((err) => console.error(err));
-    } else if (id && articles.length > 6) {
-      fetch(`http://localhost:8888/api/articles/${id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-          articles,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.error(err));
-    }
-  }, [articles]);
+  // useEffect(() => {
+  //   if (articles.length > 0 && articles.length <= 6) {
+  //     fetch("http://localhost:8888/api/articles", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         articles,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setId(data._id);
+  //       })
+  //       .catch((err) => console.error(err));
+  //   } else if (id && articles.length > 6) {
+  //     fetch(`http://localhost:8888/api/articles/${id}`, {
+  //       method: "PUT",
+  //       body: JSON.stringify({
+  //         articles,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => console.log("Articles were updated"))
+  //       .catch((err) => console.error(err));
+  //   }
+  // }, [articles]);
 
   return (
     <PageWrapper>

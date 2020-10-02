@@ -4,7 +4,6 @@ import styles from "./index.module.css";
 const ArticleInfo = ({ article }) => {
   let date = article.publishedAt.split("T").join(" ");
   date = date.split("Z")[0];
-  console.log("article-content", article.content);
 
   return (
     <div className={styles.container}>
