@@ -6,75 +6,73 @@ import Article from "../../components/article";
 import styles from "./index.module.css";
 import MarketOverview from "../../components/market-overview";
 import Spinner from "../../components/spinner";
+import { getArticles } from "../../services/fetchArticles";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
   const [articlePage, setArticlePage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [id, setId] = useState(undefined);
 
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
 
-  const getArticles = async (page) => {
+  const fetchArticles = async (page) => {
     const res = await fetch(
       `http://newsapi.org/v2/everything?q=markets&language=en&sortBy=popularity&pageSize=6&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
     );
-    let updatedArticles;
-    const data = await res.json();
-    console.log("API CALL: ", data.articles);
 
-    data.articles.forEach(
-      ({
-        title,
-        content,
-        description,
-        author,
-        publishedAt,
-        url,
-        urlToImage,
-        source,
-      }) => {
-        fetch("http://localhost:8888/api/articles", {
-          method: "POST",
-          body: JSON.stringify({
-            title,
-            content,
-            description,
-            author,
-            publishedAt,
-            url,
-            urlToImage,
-            source: source.name,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((addedArticle) => console.log(addedArticle))
-          .catch((err) => console.log(err));
-      }
-    );
+    const data = await res.json();
+    let fetchedArticles = [];
 
     if (data.articles !== undefined) {
-      updatedArticles = articles.concat(data.articles);
-      return updatedArticles;
+      data.articles.forEach(
+        ({
+          title,
+          content,
+          description,
+          author,
+          publishedAt,
+          url,
+          urlToImage,
+          source,
+        }) => {
+          fetch("http://localhost:8888/api/articles", {
+            method: "POST",
+            body: JSON.stringify({
+              title,
+              content,
+              description,
+              author,
+              publishedAt,
+              url,
+              urlToImage,
+              source: source.name,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((createdArticle) => fetchedArticles.push(createdArticle))
+            .catch((err) => console.log(err));
+        }
+      );
+      return fetchedArticles;
+    } else {
+      setHasMore(false);
+      return undefined;
     }
-
-    setHasMore(false);
-    return undefined;
   };
 
   useEffect(() => {
-    getArticles(articlePage).then((data) => {
-      if (data !== undefined) {
-        setArticles(data);
-        setArticlePage(articlePage + 1);
-      } else {
-        return;
-      }
+    fetchArticles(articlePage).then((data) => {
+      setArticles(data);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(articles);
+  }, [articles]);
 
   // useEffect(() => {
   //   if (articles.length > 0 && articles.length <= 6) {
@@ -137,21 +135,17 @@ const Home = () => {
               loader={<Spinner />}
             >
               {articles.map((article, i) => {
-                if (article) {
-                  return (
-                    <Article
-                      key={i}
-                      title={article.title}
-                      author={article.author}
-                      content={article.content}
-                      url={article.url}
-                      imageUrl={article.urlToImage}
-                      published={article.publishedAt.slice(11, 16)}
-                    />
-                  );
-                } else {
-                  return;
-                }
+                return (
+                  <Article
+                    key={i}
+                    title={article.title}
+                    author={article.author}
+                    content={article.content}
+                    url={article.url}
+                    imageUrl={article.urlToImage}
+                    published={article.publishedAt.slice(11, 16)}
+                  />
+                );
               })}
             </InfiniteScroll>
           </div>
