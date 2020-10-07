@@ -22,26 +22,25 @@ const Home = () => {
     );
 
     const data = await res.json();
-    let fetchedArticles = [];
 
     if (data.articles !== undefined) {
-      data.articles.forEach(
-        ({
+      data.articles.map(
+        async ({
           title,
-          content,
           description,
           author,
+          content,
           publishedAt,
           url,
           urlToImage,
           source,
         }) => {
-          fetch("http://localhost:8888/api/articles", {
+          const req = await fetch(`http://localhost:8888/api/articles/`, {
             method: "POST",
             body: JSON.stringify({
               title,
-              content,
               description,
+              content,
               author,
               publishedAt,
               url,
@@ -51,13 +50,10 @@ const Home = () => {
             headers: {
               "Content-Type": "application/json",
             },
-          })
-            .then((res) => res.json())
-            .then((createdArticle) => fetchedArticles.push(createdArticle))
-            .catch((err) => console.log(err));
+          });
         }
       );
-      return fetchedArticles;
+      return "Articles added to db";
     } else {
       setHasMore(false);
       return undefined;
@@ -65,45 +61,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchArticles(articlePage).then((data) => {
-      setArticles(data);
+    fetchArticles(articlePage).then(async (returned) => {
+      if (returned !== undefined) {
+        let data = await getArticles();
+        setArticles(data);
+        setArticlePage(articlePage + 1);
+      }
     });
   }, []);
 
-  useEffect(() => {
-    console.log(articles);
-  }, [articles]);
-
   // useEffect(() => {
-  //   if (articles.length > 0 && articles.length <= 6) {
-  //     fetch("http://localhost:8888/api/articles", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         articles,
-  //       }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setId(data._id);
-  //       })
-  //       .catch((err) => console.error(err));
-  //   } else if (id && articles.length > 6) {
-  //     fetch(`http://localhost:8888/api/articles/${id}`, {
-  //       method: "PUT",
-  //       body: JSON.stringify({
-  //         articles,
-  //       }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => console.log("Articles were updated"))
-  //       .catch((err) => console.error(err));
-  //   }
+  //   console.log(articles);
   // }, [articles]);
 
   return (
@@ -116,12 +84,11 @@ const Home = () => {
               dataLength={articles.length}
               height={"660px"}
               next={() => {
-                getArticles(articlePage).then((data) => {
-                  if (data !== undefined) {
+                fetchArticles(articlePage).then(async (returned) => {
+                  if (returned !== undefined) {
+                    let data = await getArticles();
                     setArticles(data);
                     setArticlePage(articlePage + 1);
-                  } else {
-                    return;
                   }
                 });
               }}
@@ -134,18 +101,8 @@ const Home = () => {
               scrollThreshold={1}
               loader={<Spinner />}
             >
-              {articles.map((article, i) => {
-                return (
-                  <Article
-                    key={i}
-                    title={article.title}
-                    author={article.author}
-                    content={article.content}
-                    url={article.url}
-                    imageUrl={article.urlToImage}
-                    published={article.publishedAt.slice(11, 16)}
-                  />
-                );
+              {articles.map((article) => {
+                return <Article data={article} />;
               })}
             </InfiniteScroll>
           </div>
