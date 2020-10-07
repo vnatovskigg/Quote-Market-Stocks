@@ -1,32 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
+import { getArticles } from "../../services/fetchArticles";
 import { useParams } from "react-router-dom";
 import PageWrapper from "../../components/page-wrapper";
 import ContentWrapper from "../../components/content-wrapper";
 import ArticleInfo from "../../components/article-info";
+import Spinner from "../../components/spinner";
 
 const ArticlePage = () => {
-  let { title } = useParams();
+  let { id } = useParams();
   const [article, setArticle] = useState(false);
 
-  const fetchArticle = async () => {
-    const res = await fetch(`http://localhost:8888/api/articles/`);
-    const data = await res.json();
-    return data;
-  };
-
-  useEffect(() => {
-    fetchArticle()
-      .then((data) => {
-        data.forEach((article) => {
-          if (article.title === title) {
-            setArticle(article);
-            return;
-          }
-        });
-      })
-      .catch((err) => console.error(err));
-  }, [article]);
+  useEffect(() => {}, [article]);
 
   return (
     <PageWrapper>
@@ -34,7 +19,7 @@ const ArticlePage = () => {
         // title={article ? article.title : "Loading..."}
         layout="row"
       >
-        {article ? <ArticleInfo article={article} /> : "Loading..."}
+        {article ? <ArticleInfo article={article} /> : <Spinner />}
       </ContentWrapper>
     </PageWrapper>
   );

@@ -16,9 +16,9 @@ const Spinner = () => {
         cy="50"
         fill="none"
         stroke="#f0eeee"
-        stroke-width="4"
+        strokeWidth="4"
         r="38"
-        stroke-dasharray="179.0707812546182 61.690260418206066"
+        strokeDasharray="179.0707812546182 61.690260418206066"
       >
         <animateTransform
           attributeName="transform"
