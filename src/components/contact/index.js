@@ -33,7 +33,7 @@ function Contact() {
   };
 
   return (
-    <ContentWrapper title="Contact">
+    <ContentWrapper title="Contact" layout="column">
       <form
         className={styles["contact-form"]}
         onSubmit={handleSubmit(onSubmit)}

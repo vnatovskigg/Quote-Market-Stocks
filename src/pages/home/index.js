@@ -6,11 +6,10 @@ import Article from "../../components/article";
 import styles from "./index.module.css";
 import MarketOverview from "../../components/market-overview";
 import Spinner from "../../components/spinner";
-import { getArticles } from "../../services/fetchArticles";
+import { getArticles, checkForArticle } from "../../services/fetchArticles";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
-  const [articlePage, setArticlePage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   var today = new Date();
@@ -35,44 +34,50 @@ const Home = () => {
           urlToImage,
           source,
         }) => {
-          const req = await fetch(`http://localhost:8888/api/articles/`, {
-            method: "POST",
-            body: JSON.stringify({
-              title,
-              description,
-              content,
-              author,
-              publishedAt,
-              url,
-              urlToImage,
-              source: source.name,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const check = await checkForArticle(title);
+          console.log(check);
+          if (check) {
+            const req = await fetch(`http://localhost:8888/api/articles/`, {
+              method: "POST",
+              body: JSON.stringify({
+                title,
+                description,
+                content,
+                author,
+                publishedAt,
+                url,
+                urlToImage,
+                source: source.name,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+          }
         }
       );
       return "Articles added to db";
     } else {
       setHasMore(false);
+      fetch(`http://localhost:8888/api/articles/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return undefined;
     }
   };
 
   useEffect(() => {
-    fetchArticles(articlePage).then(async (returned) => {
+    const page = Math.ceil(articles.length / 6 + 1);
+    fetchArticles(page).then(async (returned) => {
       if (returned !== undefined) {
         let data = await getArticles();
         setArticles(data);
-        setArticlePage(articlePage + 1);
       }
     });
   }, []);
-
-  // useEffect(() => {
-  //   console.log(articles);
-  // }, [articles]);
 
   return (
     <PageWrapper>
@@ -84,11 +89,11 @@ const Home = () => {
               dataLength={articles.length}
               height={"660px"}
               next={() => {
-                fetchArticles(articlePage).then(async (returned) => {
+                const page = Math.ceil(articles.length / 6 + 1);
+                fetchArticles(page).then(async (returned) => {
                   if (returned !== undefined) {
                     let data = await getArticles();
                     setArticles(data);
-                    setArticlePage(articlePage + 1);
                   }
                 });
               }}
@@ -102,7 +107,7 @@ const Home = () => {
               loader={<Spinner />}
             >
               {articles.map((article) => {
-                return <Article data={article} />;
+                return <Article key={article._id} data={article} />;
               })}
             </InfiniteScroll>
           </div>
