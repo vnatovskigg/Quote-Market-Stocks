@@ -6,7 +6,7 @@ import ContentWrapper from "../content-wrapper";
 
 function About() {
   return (
-    <ContentWrapper title="About">
+    <ContentWrapper title="About" layout="column">
       <h3 className={styles.name}>Velizar Natovski</h3>
       <div className={styles["profile-pic"]}>
         <img src={profilePic} alt={"Velizar Natovski"} />
