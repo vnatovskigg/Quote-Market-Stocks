@@ -20,7 +20,7 @@ const Navigation = () => {
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
-        <Route path="/article/:title" component={ArticlePage} />
+        <Route path="/article/:id" component={ArticlePage} />
         {/* TODO*/}
         {/* <Route component={ErrorPage} /> */}
       </Switch>
