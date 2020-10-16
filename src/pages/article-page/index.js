@@ -9,9 +9,24 @@ import Spinner from "../../components/spinner";
 
 const ArticlePage = () => {
   let { id } = useParams();
+  console.log("ID", id);
   const [article, setArticle] = useState(false);
 
-  useEffect(() => {}, [article]);
+  const fetchArticle = async (articleId) => {
+    let data = await getArticles()
+    let article = data.find((e) => {
+        return e._id = articleId;
+      })
+
+      return article
+  }
+
+  useEffect(() => {
+    fetchArticle(id).then(returnedArticle => {
+      console.log(returnedArticle);
+      setArticle(returnedArticle)
+    })
+  }, [id]);
 
   return (
     <PageWrapper>

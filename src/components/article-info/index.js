@@ -5,6 +5,9 @@ const ArticleInfo = ({ article }) => {
   let date = article.publishedAt.split("T").join(" ");
   date = date.split("Z")[0];
 
+  let content = article.content.split('[')[0];
+
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -17,7 +20,7 @@ const ArticleInfo = ({ article }) => {
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-          >{`   ${article.source.name}`}</a>
+          >{`   ${article.source.name || "Unknown"}`}</a>
         </span>
         <span className={styles.source}>
           <small>By:</small>
@@ -34,7 +37,11 @@ const ArticleInfo = ({ article }) => {
       <div className={styles.poster}>
         <img src={article.urlToImage}></img>
       </div>
-      <div className={styles.content}>{article.content}</div>
+      <div className={styles.content}>{content}<a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          ><small className={styles.readMore}>[Read More]</small></a></div>
     </div>
   );
 };
