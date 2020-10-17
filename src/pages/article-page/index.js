@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import styles from "./index.module.css";
 import { getArticles } from "../../services/fetchArticles";
 import { useParams } from "react-router-dom";
@@ -9,24 +9,30 @@ import Spinner from "../../components/spinner";
 
 const ArticlePage = () => {
   let { id } = useParams();
-  console.log("ID", id);
   const [article, setArticle] = useState(false);
+  const [_id, setId] = useState('');
 
   const fetchArticle = async (articleId) => {
     let data = await getArticles()
     let article = data.find((e) => {
-        return e._id = articleId;
+        return e._id === articleId
       })
-
       return article
   }
 
   useEffect(() => {
-    fetchArticle(id).then(returnedArticle => {
-      console.log(returnedArticle);
-      setArticle(returnedArticle)
+    fetchArticle(_id).then(returnedArticle => {
+      if(returnedArticle) {
+        setArticle(returnedArticle)
+      }
     })
-  }, [id]);
+  }, [_id]);
+
+  useEffect(() => {
+    if (id !== _id) {
+      setId(id)
+    }
+  })
 
   return (
     <PageWrapper>
