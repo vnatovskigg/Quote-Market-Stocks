@@ -81,8 +81,7 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      <ContentWrapper date={today} layout="row">
-        <div className={styles.container}>
+      <ContentWrapper date={today} layout="row"> 
           <div className={styles.news}>
             <InfiniteScroll
               className={styles.newsElement}
@@ -114,7 +113,6 @@ const Home = () => {
           <div className={styles.aside}>
             <MarketOverview />
           </div>
-        </div>
       </ContentWrapper>
     </PageWrapper>
   );
