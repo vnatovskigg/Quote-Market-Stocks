@@ -1,23 +1,30 @@
-<div class="tradingview-widget-container">
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-  {
-  "colorTheme": "dark",
-  "dateRange": "1D",
-  "showChart": true,
-  "locale": "en",
-  "width": "100%",
-  "height": "100%",
-  "largeChartUrl": "",
-  "isTransparent": false,
-  "showSymbolLogo": false,
-  "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
-  "plotLineColorFalling": "rgba(25, 118, 210, 1)",
-  "gridLineColor": "rgba(42, 46, 57, 1)",
-  "scaleFontColor": "rgba(120, 123, 134, 1)",
-  "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
-  "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
-  "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
-  "tabs": [
+import { useEffect } from 'react';
+
+const useScript = (url, parentEl) => {
+  useEffect(() => {
+    const script = document.createElement('script');
+
+    script.src = url;
+    script.async = true;
+
+    script.innerHTML = JSON.stringify({
+        "colorTheme": "dark",
+        "dateRange": "1D",
+        "showChart": true,
+        "locale": "en",
+        "width": "100%",
+        "height": "100%",
+        "largeChartUrl": "",
+        "isTransparent": false,
+        "showSymbolLogo": false,
+        "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
+        "plotLineColorFalling": "rgba(25, 118, 210, 1)",
+        "gridLineColor": "rgba(42, 46, 57, 1)",
+        "scaleFontColor": "rgba(120, 123, 134, 1)",
+        "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+        "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+        "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+        "tabs": [
     {
       "title": "Indices",
       "symbols": [
@@ -129,6 +136,14 @@
       "originalTitle": "Forex"
     }
   ]
-}
-  </script>
-</div>
+})
+
+    parentEl.appendChild(script);
+
+    return () => {
+        parentEl.removeChild(script);
+    }
+  }, [url]);
+};
+
+export default useScript;

@@ -5,7 +5,7 @@
 
 .news {
   width: 60%;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 
 .newsElement::-webkit-scrollbar {
@@ -25,7 +25,7 @@
 }
 
 .aside {
-  margin-left: auto;
+  margin-left: 5%;
   width: 33%;
   height: 600px;
 }
