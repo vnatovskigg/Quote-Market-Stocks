@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useScript = (url, parentEl) => {
+const useScript = (url, ref, theme) => {
   useEffect(() => {
     const script = document.createElement('script');
 
@@ -8,7 +8,7 @@ const useScript = (url, parentEl) => {
     script.async = true;
 
     script.innerHTML = JSON.stringify({
-        "colorTheme": "dark",
+        "colorTheme": theme,
         "dateRange": "1D",
         "showChart": true,
         "locale": "en",
@@ -138,12 +138,11 @@ const useScript = (url, parentEl) => {
   ]
 })
 
-    parentEl.appendChild(script);
-
-    return () => {
-        parentEl.removeChild(script);
+    if (ref.current.childNodes[1]) {
+        ref.current.childNodes[1].remove(); 
     }
-  }, [url]);
+    ref.current.appendChild(script);
+  }, [url, theme]);
 };
 
 export default useScript;
