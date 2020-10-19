@@ -1,17 +1,30 @@
-import React, { PureComponent } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./index.module.css";
 import { BsMoon, BsSun } from "react-icons/bs";
 import useScript from '../../hooks/useScript';
-import createHTMLElement from '../../services/createElement';
 
 const MarketOverview = () => {
+  const [theme, setTheme] = useState('dark');
+  const ref = useRef();
 
-  const parentEl = createHTMLElement('div', "widget_container");
-
-  useScript("https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", parentEl)
+  useScript("https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", ref, theme)
   
+  const changeTheme = () => {
+    if (theme === "dark") {
+        setTheme('light')
+      } else {
+        setTheme('dark')
+    }
+  }
+
+
   return (
-    {parentEl}
+   
+    <div className={styles.container} ref={ref}>
+       <div className={styles.dashboard}>
+         {theme === "dark" ? <BsSun onClick={changeTheme}/> : <BsMoon onClick={changeTheme}/>}      
+       </div>
+    </div>
   )
 }
 
