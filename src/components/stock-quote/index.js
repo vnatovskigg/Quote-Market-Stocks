@@ -33,12 +33,12 @@ function Quote(props) {
         week52High,
         week52Low,
       } = data;
-
+      
       setState({
         quote: {
           latestPrice: latestPrice.toFixed(2),
           change: change.toFixed(2),
-          changePercent: changePercent.toFixed(2),
+          changePercent: (changePercent * 100).toFixed(2),
           companyName,
           week52High: week52High.toFixed(2),
           week52Low: week52Low.toFixed(2),
