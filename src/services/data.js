@@ -8441,7 +8441,7 @@ export default [
   { symbol: "NINE", name: "Nine Energy Service Inc." },
   {
     symbol: "NIO",
-    name: "NIO Inc. American depositary shares each representing one Class A",
+    name: "NIO Inc.",
   },
   {
     symbol: "NIQ",
@@ -9434,6 +9434,7 @@ export default [
   { symbol: "PLPC", name: "Preformed Line Products Company" },
   { symbol: "PLSE", name: "Pulse Biosciences Inc" },
   { symbol: "PLT", name: "Plantronics Inc." },
+  { symbol: "PLTR", name: "Palantir Technologies Inc." },
   { symbol: "PLTM", name: "GraniteShares Platinum Shares" },
   { symbol: "PLUG", name: "Plug Power Inc." },
   { symbol: "PLUS", name: "ePlus inc." },

@@ -22,7 +22,7 @@ const MarketOverview = () => {
    
     <div className={styles.container} ref={ref}>
        <div className={styles.dashboard}>
-         {theme === "dark" ? <BsSun onClick={changeTheme}/> : <BsMoon onClick={changeTheme}/>}      
+         {theme === "dark" ? <BsSun className={styles.switch} onClick={changeTheme}/> : <BsMoon className={styles.switch} onClick={changeTheme}/>}      
        </div>
     </div>
   )
