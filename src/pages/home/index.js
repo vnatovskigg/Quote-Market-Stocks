@@ -16,7 +16,7 @@ const Home = () => {
   today = JSON.stringify(today).slice(1, 11);
 
   const fetchArticles = async (page) => {
-    const res = await fetch("https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/detail?internalID=QFY0Y6T0AFB501", {
+    const res = await fetch("https://bloomberg-market-and-financial-news.p.rapidapi.com/news/list?id=markets", {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": "26b171259cmshcab3cc72d758417p1c9e3ajsn5b654972df21",
@@ -29,7 +29,9 @@ const Home = () => {
     // );
 
     const data = await res.json();
-    console.log(data);
+    let modules = data.modules;
+    modules = modules.filter((module) => module.stories.length > 0);
+    console.log(modules);
 
     if (data.articles !== undefined) {
       data.articles.map(
