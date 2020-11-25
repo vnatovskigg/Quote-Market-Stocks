@@ -6,79 +6,13 @@ import Article from "../../components/article";
 import styles from "./index.module.css";
 import MarketOverview from "../../components/market-overview";
 import Spinner from "../../components/spinner";
-import { getArticles, checkForArticle } from "../../services/fetchArticles";
+import { getArticles, checkForArticle, fetchArticles } from "../../services/fetchArticles";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
 
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
-
-  const fetchArticles = async (page) => {
-    const res = await fetch("https://bloomberg-market-and-financial-news.p.rapidapi.com/news/list?id=markets", {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-key": "26b171259cmshcab3cc72d758417p1c9e3ajsn5b654972df21",
-        "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com"
-      }
-    })
-
-    // const res = await fetch(
-    //   `http://newsapi.org/v2/everything?q=markets&language=en&sortBy=popularity&pageSize=6&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
-    // );
-
-    const data = await res.json();
-    let modules = data.modules;
-    modules = modules.filter((module) => module.stories.length > 0);
-    console.log(modules);
-
-    if (data.articles !== undefined) {
-      data.articles.map(
-        async ({
-          title,
-          description,
-          author,
-          content,
-          publishedAt,
-          url,
-          urlToImage,
-          source,
-        }) => {
-          const check = await checkForArticle(title);
-          
-          if (check) {
-            const req = await fetch(`http://localhost:8888/api/articles/`, {
-              method: "POST",
-              body: JSON.stringify({
-                title,
-                description,
-                content,
-                author,
-                publishedAt,
-                url,
-                urlToImage,
-                source: source.name,
-              }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
-          }
-        }
-      );
-      return "Articles added to db";
-    } else {
-      setHasMore(false);
-      fetch(`http://localhost:8888/api/articles/`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return undefined;
-    }
-  };
 
   useEffect(() => {
     const page = Math.ceil(articles.length / 6 + 1);
@@ -94,7 +28,7 @@ const Home = () => {
     <PageWrapper>
       <ContentWrapper date={today} layout="row"> 
           <div className={styles.news}>
-            <InfiniteScroll
+            {/* <InfiniteScroll
               className={styles.newsElement}
               dataLength={articles.length}
               height={"660px"}
@@ -115,11 +49,15 @@ const Home = () => {
               }
               scrollThreshold={1}
               loader={<Spinner />}
-            >
+            > */}
+
+
               {articles.map((article) => {
                 return <Article key={article._id} data={article} />;
               })}
-            </InfiniteScroll>
+
+              
+            {/* </InfiniteScroll> */}
           </div>
           <div className={styles.aside}>
             <MarketOverview />
