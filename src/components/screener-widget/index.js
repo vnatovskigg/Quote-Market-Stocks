@@ -43,7 +43,7 @@ class StockTV extends PureComponent {
           title: "ETH/USD",
         },
       ],
-      colorTheme: "light",
+      colorTheme: "dark",
       isTransparent: false,
       displayMode: "regular",
       locale: "en",

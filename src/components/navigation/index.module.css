@@ -1,11 +1,10 @@
 .nav {
-  margin-top: -25px;
-  padding: 25px;
+  padding: 2%;
   display: flex;
   position: relative;
   justify-content: space-between;
   align-items: center;
-  min-height: 10vh;
+  /* min-height: 10vh; */
   background: #0b1741;
   border-radius: 0px 0px 15px 15px;
   box-shadow: 0.5px 2px 3px rgba(255, 255, 255, 0.7);
