@@ -1,6 +1,7 @@
 .container {
   height: 5vh;
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  border-bottom: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -22,4 +23,27 @@
   font-weight: 600;
   letter-spacing: 1px;
   /* text-transform: uppercase; */
+}
+
+.menu {
+  margin-left: auto;
+  width: 60%;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navLink {
+  font-size: 10pt;
+  color: #e2dcdc;
+  transition: 0.2s ease;
+}
+
+.navLink:hover {
+  color: white;
+  transition: 0.2s ease;
 }
