@@ -1,4 +1,4 @@
-const getNavigation = (user) => {
+export const getNavigation = (user) => {
   const authLinks = [
     {
       title: "About",
@@ -42,4 +42,51 @@ const getNavigation = (user) => {
   return loggedIn ? authLinks : guestLinks;
 };
 
-export default getNavigation;
+export const getNewsNav = () => {
+  return  [
+    {
+      title: "Markets",
+      link: "/markets",
+    },
+    {
+      title: "Technology",
+      link: "/technology",
+    },
+    {
+      title: "Politics",
+      link: "/politics",
+    },
+    {
+      title: "Businessweek",
+      link: '/businessweek',
+    },
+    {
+      title: "Crypto",
+      link: "/cryptocurrencies",
+    },
+    {
+      title: "Wealth",
+      link: "/wealth",
+    },
+    {
+      title: "Latest",
+      link: "/latest",
+    },
+    {
+      title: "World",
+      link: '/world',
+    },
+    {
+      title: "Stocks",
+      link: "/stocks",
+    },
+    {
+      title: "Forex",
+      link: '/forex',
+    },
+    {
+      title: "Brexit",
+      link: '/brexit',
+    },
+  ];
+}

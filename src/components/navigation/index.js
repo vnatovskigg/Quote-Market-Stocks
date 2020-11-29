@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../logo";
 import Search from "../search";
 import styles from "./index.module.css";
-import getNavigation from "../../services/navigation";
+import { getNavigation } from "../../services/navigation";
 import UserContext from "../../Context";
 
 const Nav = () => {
