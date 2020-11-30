@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PageWrapper from "../../components/page-wrapper";
 import ContentWrapper from "../../components/content-wrapper";
@@ -6,17 +7,18 @@ import Article from "../../components/article";
 import styles from "./index.module.css";
 import MarketOverview from "../../components/market-overview";
 import Spinner from "../../components/spinner";
-import { getArticles, checkForArticle, fetchArticles } from "../../services/fetchArticles";
+import { getArticles, fetchArticles } from "../../services/fetchArticles";
 
-const Home = () => {
+const NewsPage = () => {
   const [articles, setArticles] = useState([]);
+  let { segment } = useParams();
 
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
 
   useEffect(() => {
-    const page = Math.ceil(articles.length / 6 + 1);
-    fetchArticles(page).then(async (returned) => {
+    // const page = Math.ceil(articles.length / 6 + 1);
+    fetchArticles(segment).then(async (returned) => {
       if (returned !== undefined) {
         let data = await getArticles();
         setArticles(data);
@@ -67,4 +69,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default NewsPage;
