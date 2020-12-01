@@ -46,47 +46,47 @@ export const getNewsNav = () => {
   return  [
     {
       title: "Markets",
-      link: "/markets",
+      link: "/news/markets",
     },
     {
       title: "Technology",
-      link: "/technology",
+      link: "/news/technology",
     },
     {
       title: "Politics",
-      link: "/politics",
+      link: "/news/politics",
     },
     {
       title: "Businessweek",
-      link: '/businessweek',
+      link: '/news/businessweek',
     },
     {
       title: "Crypto",
-      link: "/cryptocurrencies",
+      link: "/news/cryptocurrencies",
     },
     {
       title: "Wealth",
-      link: "/wealth",
+      link: "/news/wealth",
     },
     {
       title: "Latest",
-      link: "/latest",
+      link: "/news/latest",
     },
     {
       title: "World",
-      link: '/world',
+      link: '/news/world',
     },
     {
       title: "Stocks",
-      link: "/stocks",
+      link: "/news/stocks",
     },
     {
       title: "Forex",
-      link: '/forex',
+      link: '/news/forex',
     },
     {
       title: "Brexit",
-      link: '/brexit',
+      link: '/news/brexit',
     },
   ];
 }

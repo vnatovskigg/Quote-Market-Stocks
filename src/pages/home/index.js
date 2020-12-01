@@ -10,21 +10,24 @@ import Spinner from "../../components/spinner";
 import { getArticles, fetchArticles } from "../../services/fetchArticles";
 
 const NewsPage = () => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(null);
   let { segment } = useParams();
+  console.log("SEGMENT ", segment);
 
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
 
   useEffect(() => {
-    // const page = Math.ceil(articles.length / 6 + 1);
-    fetchArticles(segment).then(async (returned) => {
-      if (returned !== undefined) {
-        let data = await getArticles();
-        setArticles(data);
-      }
-    });
-  }, []);
+    async function fetchData() {
+      await fetchArticles(segment).then(fetched => {
+        console.log("SUPPOSED ARTICLES, ", fetched);
+        // let data = await getArticles(segment);
+        // setArticles(data);
+      });
+    }
+    fetchData();
+    
+  }, [segment]);
 
   return (
     <PageWrapper>
@@ -54,9 +57,13 @@ const NewsPage = () => {
             > */}
 
 
-              {articles.map((article) => {
+              {
+              articles ? 
+              articles.map((article) => {
                 return <Article key={article._id} data={article} />;
-              })}
+              }) :
+              <Spinner />
+            }
 
               
             {/* </InfiniteScroll> */}
