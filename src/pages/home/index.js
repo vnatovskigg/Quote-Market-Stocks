@@ -7,25 +7,22 @@ import Article from "../../components/article";
 import styles from "./index.module.css";
 import MarketOverview from "../../components/market-overview";
 import Spinner from "../../components/spinner";
-import { getArticles, fetchArticles } from "../../services/fetchArticles";
+import { getArticles, fetchArticles, depositData } from "../../services/fetchArticles";
 
 const NewsPage = () => {
   const [articles, setArticles] = useState(null);
   let { segment } = useParams();
-  console.log("SEGMENT ", segment);
 
   var today = new Date();
   today = JSON.stringify(today).slice(1, 11);
 
   useEffect(() => {
-    async function fetchData() {
-      await fetchArticles(segment).then(fetched => {
-        console.log("SUPPOSED ARTICLES, ", fetched);
-        // let data = await getArticles(segment);
-        // setArticles(data);
-      });
+    async function renderArticles() {
+      let fetched = await fetchArticles(segment);
+      depositData(fetched, segment)
+      console.log(getArticles(segment));
     }
-    fetchData();
+    renderArticles();
     
   }, [segment]);
 
