@@ -18,7 +18,6 @@ const NewsMenu = () => {
         }
         return comparison;
       }
-    console.log(links);
 
     return (
         <div className={styles.container}>

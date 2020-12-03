@@ -5,27 +5,21 @@ import { Link } from "react-router-dom";
 const Article = (props) => {
   let {
     title,
-    description,
-    content,
+    summary,
+    published,
     author,
     url,
-    urlToImage,
-    source,
-    publishedAt,
+    thumbnail,
+    uid,
+    segment,
     _id,
   } = props.data;
-
-  publishedAt = publishedAt
-    .split("T")
-    .join(" ")
-    .split("Z")[0]
-    .slice(0, publishedAt.length - 4);
 
   return (
     <div className={styles.container}>
       <div className={styles.image}>
         <Link to={`/article/${_id}`}>
-          <img src={urlToImage} alt={title}></img>
+          <img src={thumbnail} alt={title}></img>
         </Link>
       </div>
 
@@ -36,19 +30,16 @@ const Article = (props) => {
           </p>
         </div>
         <div className={styles.user}>
-          <p className={styles.author}>{`By ${
-            author || "Unknown"
-          }, ${publishedAt}`}</p>
+          <p className={styles.author}>{`By ${author}, ${published}`}</p>
         </div>
         <div className={styles.text}>
-          <p>{content}</p>
+          <p>{summary}</p>
         </div>
         <div className={styles.readMore}>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.read}
           >
             Read More
           </a>

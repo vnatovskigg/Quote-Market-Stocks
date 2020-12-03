@@ -17,10 +17,13 @@ const NewsPage = () => {
   today = JSON.stringify(today).slice(1, 11);
 
   useEffect(() => {
+    setArticles(null);
     async function renderArticles() {
       let fetched = await fetchArticles(segment);
-      depositData(fetched, segment)
-      console.log(getArticles(segment));
+      depositData(fetched, segment || 'latest')
+      let data = await getArticles(segment);
+      console.log(data);
+      setArticles(data);
     }
     renderArticles();
     

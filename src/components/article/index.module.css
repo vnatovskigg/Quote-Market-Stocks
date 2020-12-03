@@ -1,7 +1,7 @@
 .container {
   display: flex;
   /* width: 90%; */
-  height: auto;
+  height: 200px;
   align-items: center;
   justify-content: space-around;
   /* padding: 10px; */
@@ -12,16 +12,26 @@
 }
 
 .contents {
-  position: relative;
+  /* position: relative;
   margin-bottom: auto;
   margin-left: 1%;
   padding: 0.5%;
   width: 85%;
-  /* height: 150px; */
+  height: 150px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 70%;
+  height: 100%;
+  padding: 2%;
 }
 
 .readMore {
-  margin-top: 10px;
+  /* margin-top: 10px;
+  position: absolute;
+  bottom: 0; */
+  margin-top: auto;
+  margin-left: auto;
 }
 
 .readMore a {
@@ -35,16 +45,21 @@
 }
 
 .text {
-  margin-top: 5px;
+  margin-top: 1%;
 }
 
 .text p {
-  font-size: 11pt;
+  font-size: 12pt;
+  line-height: 23px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 600px;
 }
 
 .image {
   width: 35%;
-  height: 150px;
+  height: 100%;
   margin-right: auto;
 }
 
@@ -58,6 +73,7 @@
   display: flex;
   flex-direction: row;
   padding: 2px;
+  margin-top: 1%;
   font-size: 10pt;
   font-style: italic;
   color: #e2dcdc;
