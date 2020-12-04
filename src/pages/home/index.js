@@ -20,9 +20,9 @@ const NewsPage = () => {
     setArticles(null);
     async function renderArticles() {
       let fetched = await fetchArticles(segment);
-      depositData(fetched, segment || 'latest')
-      let data = await getArticles(segment);
-      console.log(data);
+      console.log("FETCHED ", fetched);
+      console.log("DEPOSIT ARTICLES ", await depositData(fetched, segment || 'latest'))
+      let data = await getArticles(segment || 'latest');
       setArticles(data);
     }
     renderArticles();
