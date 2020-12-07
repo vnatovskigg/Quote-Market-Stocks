@@ -11,6 +11,7 @@ import { getArticles, fetchArticles, depositData } from "../../services/fetchArt
 
 const NewsPage = () => {
   const [articles, setArticles] = useState(null);
+  const [reload, setReload] = useState(false);
   let { segment } = useParams();
 
   var today = new Date();
@@ -18,16 +19,23 @@ const NewsPage = () => {
 
   useEffect(() => {
     setArticles(null);
-    async function renderArticles() {
+    async function exec() {
       let fetched = await fetchArticles(segment);
-      console.log("FETCHED ", fetched);
-      console.log("DEPOSIT ARTICLES ", await depositData(fetched, segment || 'latest'))
-      let data = await getArticles(segment || 'latest');
-      setArticles(data);
+      let dep = await depositData(fetched, segment || 'latest');
+      dep && setReload(!reload);
     }
-    renderArticles();
+    exec();
     
   }, [segment]);
+
+  useEffect(() => {
+    async function exec() {
+        let data = await getArticles(segment || 'latest');
+        setArticles(data);
+    }
+    exec();
+  }, [reload])
+
 
   return (
     <PageWrapper>
